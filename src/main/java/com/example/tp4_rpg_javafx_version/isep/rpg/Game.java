@@ -281,7 +281,7 @@ public class Game {
         return list[int_random];
     }
 
-    private static String nommageWeapon(String[][] list, int i) {
+    public static String nommageWeapon(String[][] list, int i) {
         Random randomNomEnemy = new Random();
         int int_random = randomNomEnemy.nextInt(1, list[i].length);
         return list[i][int_random];
@@ -420,22 +420,22 @@ public class Game {
         }
 
         //RECOMPENSE ARMES
-        for (int i=0 ; i<nombreWeapon ; i++){
-            int typeHero = randomObjet.nextInt(4);
-            if (typeHero == 0 && heroPresent[0] ==1 ){
-                createWeapon(h, list, "Warrior");
-            } else if (typeHero == 1 && heroPresent[1] ==1 ){
-                createWeapon(h, list, "Hunter");
-            } else if (typeHero == 2 && heroPresent[2] ==1 ){
-                createWeapon(h, list, "Mage");
-            }else if (typeHero == 3 && heroPresent[3] ==1 ){
-                createWeapon(h, list, "Healer");
-            }else {
-                i--;
+        if(HelloController.displayMode==0){
+            for (int i=0 ; i<nombreWeapon ; i++){
+                int typeHero = randomObjet.nextInt(4);
+                if (typeHero == 0 && heroPresent[0] ==1 ){
+                    createWeapon(h, list, "Warrior");
+                } else if (typeHero == 1 && heroPresent[1] ==1 ){
+                    createWeapon(h, list, "Hunter");
+                } else if (typeHero == 2 && heroPresent[2] ==1 ){
+                    createWeapon(h, list, "Mage");
+                }else if (typeHero == 3 && heroPresent[3] ==1 ){
+                    createWeapon(h, list, "Healer");
+                }else {
+                    i--;
+                }
             }
         }
-
-
     }
 
     private static void createWeapon(List<Combattant> h,  String[] [] [] listWeapon, String className){ //TODO Baisser les stats d'armes
@@ -485,7 +485,12 @@ public class Game {
                 }
             }
             Scanner choixWeapon = new Scanner(System.in);
-            int idWeapon = choixWeapon.nextInt();
+            int idWeapon;
+            if(HelloController.displayMode==0){
+                idWeapon = choixWeapon.nextInt();
+            } else{
+                return;
+            }
             ((Hero) cibleWeapon.get((idWeapon-1))).changeWeapon(w);
         } else if (typeHero == 1){
             for(Combattant ally :h) {
@@ -846,7 +851,7 @@ public class Game {
             {"Epique","Collier d'Eir","Amulette merveilleuse"},
             {"Legendaire","Le Caducée","Graal","Plume de Phoenix"}};
 
-    static String[] [] [] weaponList = {wWeapons,hWeapons,mWeapons,heWeapons};
+    public static String[] [] [] weaponList = {wWeapons,hWeapons,mWeapons,heWeapons};
 
 
     // BLOC NOMMAGE ENNEMIES

@@ -134,10 +134,10 @@ public class Hunter extends Hero{
         String delay = scan.nextLine();
     }
 
-    ArrayList<Weapon> currentWeaponList = new ArrayList<>();
+    public ArrayList<Weapon> currentWeaponList = new ArrayList<>();
     public int degatTotal = degat;
     private Weapon weapon;
     public int degatSpecial = 0;
-    int compteurFleche = 1;
+    public int compteurFleche = 3;
     public int bonusVie = 0;
 }

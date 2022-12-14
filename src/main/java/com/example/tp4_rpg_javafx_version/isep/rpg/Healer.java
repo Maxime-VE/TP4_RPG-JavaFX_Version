@@ -127,7 +127,7 @@ public class Healer extends SpellCaster{
         Scanner scan = new Scanner(System.in);
         String delay = scan.nextLine();
     }
-    ArrayList<Weapon> currentWeaponList = new ArrayList<>();
+    public ArrayList<Weapon> currentWeaponList = new ArrayList<>();
     public int degatTotal = degat;
     private Weapon weapon;
     int heal = -20;

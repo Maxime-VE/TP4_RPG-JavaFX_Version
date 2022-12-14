@@ -48,6 +48,8 @@ public class MainController {
     int manche = 0;
     int choixAction;
     int typeConsommable;
+    Combattant cibleWeapons;
+    Weapon weapons;
 
     public static void displayprintln(String s) {
         System.setOut(ps);
@@ -83,7 +85,7 @@ public class MainController {
 
     public int etat = 0;    //etat: [0=Démarrage, 1=Début nouvelle manche, 2=Attaque Ennemie, 3=Attaque Alliées,
                                 //   4=Choix Action, 5=Attaque Normale, 6=Attaque Spe, 7=Accès Inventaire, 8=cibleConsommable
-                                //   9=Vérification Dernier joueur de la liste, 10=]
+                                //   9=Récompenses Automatiques, 10=]
     @FXML
     void onActionClick(ActionEvent event) throws IOException {
 //        if(enemiesList.size() == 0){
@@ -117,12 +119,22 @@ public class MainController {
                     etat = 2;
                 } else {
                     etat = 3;
+                    System.out.println("\n" + "C'est au tour des héros d'attaquer");
                 }
                 break;
             case 2:
                 displayprintln(" ");
                 if (enemies.size() == 0) {
-                    //TODO ramener vers les récompenses puis recharger les nouveaux ennemis (etat=1)
+                    enemiesList.remove(0);
+                    idHero = 0;
+                    if (enemiesList.size() == 0 ){
+                        //TODO ramener vers écran de victoire
+                        break;
+                    }
+                    System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
+                    //TODO ramener vers les récompenses
+                    etat=1;
+                    break;
                 }
                 Game.attaqueEnnemie(heros, enemies);
                 if (heros.size() == 0) {
@@ -134,10 +146,20 @@ public class MainController {
                 Game.displayStatus(heros, enemies);
                 Game.finProtection(heros);
                 etat = 3;
+                System.out.println("\n" + "C'est au tour des heros d'attaquer");
                 break;
             case 3:
                 if (enemies.size() == 0) {
-                    //TODO Same
+                    enemiesList.remove(0);
+                    idHero = 0;
+                    if (enemiesList.size() == 0 ){
+                        //TODO ramener vers écran de victoire
+                        break;
+                    }
+                    System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
+                    etat=9;
+                    //TODO ramener vers les récompenses
+                    break;
                 }
                 Combattant goodOne = heros.get(idHero);
                 System.out.println(" Que va faire " + goodOne.getName() + "?");
@@ -148,6 +170,7 @@ public class MainController {
             case 4:
                 goodOne = heros.get(idHero);
                 choixAction = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixAction + "\n");
 
                 switch (choixAction) {
                     case 1:
@@ -182,7 +205,13 @@ public class MainController {
                         break;
                     case 3:
                         goodOne.protection();
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                     case 4:
                         System.out.println("Quel objet souhaitez-vous consommer ? \n" +
@@ -202,18 +231,31 @@ public class MainController {
             case 5:
                 goodOne = heros.get(idHero);
                 int choixCible = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixCible + "\n");
                 Ennemy ennemy = enemies.get((choixCible - 1));                        //ATTAQUE SIMPLE SUR LA CIBLE
                 goodOne.fight(ennemy);
                 if (ennemy.getHealthPoint() <= 0) {
                     enemies.remove((choixCible - 1));
-                    System.out.println("Les Héros ont vaincu " + ennemy.getName() + " !");
+                    System.out.println("\n" + "Les Héros ont vaincu " + ennemy.getName() + " !");
+                }
+                if (enemies.size() == 0) {
+                    etat=3;
+                    break;
                 }
                 Game.displayStatus(heros, enemies);
-                etat=9;
+                if (idHero == (heros.size() - 1)) {
+                    idHero = 0;
+                    etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                } else {
+                    idHero++;
+                    etat = 3;
+                }
                 break;
+
             case 6:
                 goodOne = heros.get(idHero);
                 choixCible = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixCible + "\n");
                 if (goodOne instanceof Healer) {
                     goodOne.special(heros.get((choixCible - 1)));
                 } else {                                                                  //ATTAQUE SPECIALE SUR LA CIBLE
@@ -222,16 +264,30 @@ public class MainController {
                     goodOne.special(ennemy);
                     if (ennemy.getHealthPoint() <= 0) {
                         enemies.remove((choixCible - 1));
-                        System.out.println("Les Héros ont vaincu " + ennemy.getName() + " !");
+                        System.out.println("\n" + " Les Héros ont vaincu " + ennemy.getName() + " !");
                     }
                 }
+                if (enemies.size() == 0) {
+                    etat=3;
+                    break;
+                }
                 Game.displayStatus(heros, enemies);
-                etat=9;
+                if (idHero == (heros.size() - 1)) {
+                    idHero = 0;
+                    etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                } else {
+                    idHero++;
+                    etat = 3;
+                }
                 break;
             case 7:
                 goodOne = heros.get(idHero);
                 int choixObjet = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixObjet + "\n");
                 switch (choixObjet) {
+                    case 0:
+                        etat=3;
+                        break;
                     case 1:
                         if (food.compteurNukaCola > 0) {
                             System.out.println("\n" +
@@ -375,6 +431,7 @@ public class MainController {
                 }break;
             case 8:
                 int choixCibleConsumable = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixCibleConsumable + "\n");
                 ArrayList<Combattant> ciblePotion = new ArrayList<>();
                 for(Combattant ally :heros) {
                     if (ally instanceof SpellCaster) {
@@ -383,38 +440,306 @@ public class MainController {
                 switch (typeConsommable){
                     case 1:
                         food.useNukaCola(heros.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
+
                     case 2:
                         food.useBento(heros.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                     case 3:
                         food.useRagout(heros.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                     case 4:
                         potion.useMiniPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                     case 5:
                         potion.usePotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                     case 6:
                         potion.useMaxiPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
-                        etat=9;
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 3;
+                        }
                         break;
                 }break;
-            case 9:
-                if (idHero == (heros.size() - 1)) {
-                    idHero = 0;
-                    etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
-                } else {
-                    idHero++;
-                    etat = 3;
+            case 9: //TODO verifier les problèmes de freeze dans la page.
+                System.out.println(" ");
+                Random randomObjet = new Random();
+                int [] heroPresent = {0,0,0,0};
+                for (Combattant c : heros){
+                    if(c instanceof Warrior){
+                        heroPresent[0] = 1;
+                    } else if (c instanceof Hunter hunter){
+                        heroPresent[1] = 1;
+                        int flecheReward = randomObjet.nextInt(4,7);
+                        hunter.compteurFleche +=flecheReward;
+                        System.out.println(hunter.getName() + " recoit " + flecheReward + " fleches.\n");
+                    } else if (c instanceof Mage){
+                        heroPresent[2] = 1;
+                    } else {
+                        heroPresent[3] = 1;
+                    }
                 }
+
+
+                //INITIALISATION NOMBRE DE RECOMPENSE
+
+                int maxLvl3Consumable;
+                int maxLvl2Consumable;
+                int maxLvl1Consumable;
+                if (manche <= 2) {
+                    maxLvl3Consumable = 1;
+                    maxLvl2Consumable = 3;
+                    maxLvl1Consumable = 4;
+                } else {
+                    maxLvl3Consumable = (int) ((heros.size()+manche-2)/2);
+                    maxLvl2Consumable = (int) ((heros.size()+manche)/2);
+                    maxLvl1Consumable = (int) ((heros.size()+manche+2)/2);
+                }
+
+                //RECOMPENSE POTION
+
+                int miniPotionReward = randomObjet.nextInt(1,maxLvl1Consumable);
+                potion.compteurMiniPotion += miniPotionReward;
+                System.out.println("Vous avez recu " + miniPotionReward + " MiniPotions.\n" +
+                        "");
+                int PotionReward = randomObjet.nextInt(0,maxLvl2Consumable);
+                if (PotionReward != 0){
+                    potion.compteurPotion += PotionReward;
+                    System.out.println("Vous avez recu " + PotionReward + " Potions.\n" +
+                            "");
+                }
+                int maxiPotionReward = randomObjet.nextInt(0,maxLvl3Consumable);
+                if (maxiPotionReward != 0) {
+                    potion.compteurMaxiPotion += maxiPotionReward;
+                    System.out.println("Vous avez recu " + maxiPotionReward + " MaxiPotions.\n" +
+                            "");
+                }
+
+                //RECOMPENSE FOOD
+                int nukaColaReward = randomObjet.nextInt(1,maxLvl1Consumable);
+                food.compteurNukaCola += nukaColaReward;
+                System.out.println("Vous avez recu " + nukaColaReward + " Nuka-Cola.\n" +
+                        "");
+                int bentoReward = randomObjet.nextInt(0,maxLvl2Consumable);
+                if (bentoReward != 0){
+                    food.compteurBento += bentoReward;
+                    System.out.println("Vous avez recu " + bentoReward + " Bento.\n" +
+                            "");
+                }
+                int ragoutReward = randomObjet.nextInt(0,maxLvl3Consumable);
+                if (ragoutReward != 0){
+                    food.compteurRagout += ragoutReward;
+                    System.out.println("Vous avez recu " + ragoutReward + " Ragout.\n" +
+                            "");
+                }
+
+
+                System.out.println("\n" +
+                        "Vous venez de trouver une arme au sol, a qui souhaitez-vous la donner ?");
+                int compteurid = 1;
+                for (Combattant ally : heros) {
+                    System.out.println(compteurid + "- " + ally.getName() + " : " + ally.getHealthPoint() + " PV  " + ally.getDegat() + " ATK" );
+                    compteurid++;
+                }
+                etat=10;
                 break;
+            case 10:
+                int choixCibleWeapons = Integer.parseInt(textField.getText());
+                System.out.println("Joueur :" + choixCibleWeapons +"\n");
+                cibleWeapons = heros.get(choixCibleWeapons-1);
+                randomObjet = new Random();
+                if(cibleWeapons instanceof Warrior){
+                    String weaponName;
+                    int degatCommonWeapon;
+                    String description;
+                    int rareteWeapon = randomObjet.nextInt(101);
+                    if (rareteWeapon <= 46) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[0], 0);
+                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        description = "Commun";
+                    } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[0], 1);
+                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        description = "Rare";
+                    } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[0], 2);
+                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        description = "Epique";
+                    } else {
+                        weaponName = Game.nommageWeapon(Game.weaponList[0], 3);
+                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        description = "Legendaire";
+                    }
+                    weapons = new Weapon(weaponName, description, degatCommonWeapon);
+                    System.out.println("Vous venez de trouver " + weapons.getName() + " +" + weapons.getDamagePoints() + " ATK ("+ weapons.getDescription()+ ") !\n" +
+                            "Mais vous possedez deja " + ((Warrior) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Warrior) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
+                            "Souhaitez-vous changer d'arme ? [y/n]");
+                    etat=11;
+                    break;
+
+                } else if (cibleWeapons instanceof Hunter) {
+                    String weaponName;
+                    int degatCommonWeapon;
+                    String description;
+                    int rareteWeapon = randomObjet.nextInt(101);
+                    if (rareteWeapon <= 46) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[1], 0);
+                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        description = "Commun";
+                    } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[1], 1);
+                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        description = "Rare";
+                    } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[1], 2);
+                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        description = "Epique";
+                    } else {
+                        weaponName = Game.nommageWeapon(Game.weaponList[1], 3);
+                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        description = "Legendaire";
+                    }
+                    weapons = new Weapon(weaponName, description, degatCommonWeapon);
+                    System.out.println("Vous venez de trouver " + weapons.getName() + " +" + weapons.getDamagePoints() + " ATK ("+ weapons.getDescription()+ ") !\n" +
+                            "Mais vous possedez deja " + ((Hunter) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Hunter) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
+                            "Souhaitez-vous changer d'arme ? [y/n]");
+                    etat=11;
+                    break;
+
+                }else if (cibleWeapons instanceof Mage) {
+                    String weaponName;
+                    int degatCommonWeapon;
+                    String description;
+                    int rareteWeapon = randomObjet.nextInt(101);
+                    if (rareteWeapon <= 46) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[2], 0);
+                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        description = "Commun";
+                    } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[2], 1);
+                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        description = "Rare";
+                    } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[2], 2);
+                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        description = "Epique";
+                    } else {
+                        weaponName = Game.nommageWeapon(Game.weaponList[2], 3);
+                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        description = "Legendaire";
+                    }
+                    weapons = new Weapon(weaponName, description, degatCommonWeapon);
+                    System.out.println("Vous venez de trouver " + weapons.getName() + " +" + weapons.getDamagePoints() + " ATK ("+ weapons.getDescription()+ ") !\n" +
+                            "Mais vous possedez deja " + ((Mage) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Mage) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
+                            "Souhaitez-vous changer d'arme ? [y/n]");
+                    etat=11;
+                    break;
+
+                }else if (cibleWeapons instanceof Healer) {
+                    String weaponName;
+                    int degatCommonWeapon;
+                    String description;
+                    int rareteWeapon = randomObjet.nextInt(101);
+                    if (rareteWeapon <= 46) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[0], 0);
+                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        description = "Commun";
+                    } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[3], 1);
+                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        description = "Rare";
+                    } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
+                        weaponName = Game.nommageWeapon(Game.weaponList[3], 2);
+                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        description = "Epique";
+                    } else {
+                        weaponName = Game.nommageWeapon(Game.weaponList[3], 3);
+                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        description = "Legendaire";
+                    }
+                    weapons = new Weapon(weaponName, description, degatCommonWeapon);
+                    System.out.println("Vous venez de trouver " + weapons.getName() + " +" + weapons.getDamagePoints() + " ATK ("+ weapons.getDescription()+ ") !\n" +
+                            "Mais vous possedez deja " + ((Healer) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Healer) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
+                            "Souhaitez-vous changer d'arme ? [y/n]");
+                    etat=11;
+                    break;
+                }
+                etat=1;
+                break;
+            case 11:
+                String choixChangementWeapon = textField.getText();
+                if (choixChangementWeapon.equals("y")){
+                    if(cibleWeapons instanceof Warrior){
+                        ((Warrior)cibleWeapons).currentWeaponList.remove(0);
+                        ((Warrior) cibleWeapons).take(weapons);
+                        System.out.println(" ");
+                        etat=1;
+                        break;
+                    }else if(cibleWeapons instanceof Hunter){
+                        ((Hunter)cibleWeapons).currentWeaponList.remove(0);
+                        ((Hunter) cibleWeapons).take(weapons);
+                        System.out.println(" ");
+                        etat=1;
+                        break;
+                    }else if(cibleWeapons instanceof Mage){
+                        ((Mage)cibleWeapons).currentWeaponList.remove(0);
+                        ((Mage) cibleWeapons).take(weapons);
+                        System.out.println(" ");
+                        etat=1;
+                        break;
+                    }else if(cibleWeapons instanceof Healer){
+                        ((Healer)cibleWeapons).currentWeaponList.remove(0);
+                        ((Healer) cibleWeapons).take(weapons);
+                        System.out.println(" ");
+                        etat=1;
+                        break;
+                    }
+                }else{
+                    System.out.println("Vous laissez l'arme sur place et partez vers la suite de votre aventure...\n");
+                    etat=1;
+                    break;
+                }
+
+
         }
     }
 }

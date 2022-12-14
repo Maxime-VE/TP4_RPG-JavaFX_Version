@@ -3,9 +3,9 @@
 ## Etat:
 
 ### A faire (Interface graphique) :
-1) Boucle de combat
-2) Récompeses fin de manche
-3) Upgrade fin de manche
+
+
+1) Upgrade fin de manche
 4) Ecran Game Over
 5) Ecran Win
 6) Ecran redirection console
@@ -17,3 +17,5 @@
 2) Ecran d'accueil/introduction/choix des joueurs
 3) Lien Console-JavaFX TextArea
 4) Actions des joueurs
+5) Boucle de combat
+6)  Récompeses fin de manche

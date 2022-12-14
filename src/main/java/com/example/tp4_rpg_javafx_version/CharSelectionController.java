@@ -84,6 +84,7 @@ public class CharSelectionController {
         imageArcher.setVisible(false);
         imageHealer.setVisible(false);
         imageMage.setVisible(false);
+        textField.setText("");
         charType=0;
     }
 
@@ -95,6 +96,7 @@ public class CharSelectionController {
         imageWarrior.setVisible(false);
         imageHealer.setVisible(false);
         imageMage.setVisible(false);
+        textField.setText("");
         charType=1;
     }
 
@@ -106,6 +108,7 @@ public class CharSelectionController {
         imageWarrior.setVisible(false);
         imageHealer.setVisible(false);
         imageArcher.setVisible(false);
+        textField.setText("");
         charType=2;
     }
 
@@ -117,6 +120,7 @@ public class CharSelectionController {
         imageWarrior.setVisible(false);
         imageArcher.setVisible(false);
         imageMage.setVisible(false);
+        textField.setText("");
         charType=3;
     }
 

@@ -123,7 +123,7 @@ public class Warrior extends Hero{
         String delay = scan.nextLine();
     }
 
-    ArrayList<Weapon> currentWeaponList = new ArrayList<>();
+    public ArrayList<Weapon> currentWeaponList = new ArrayList<>();
     public int degatTotal = degat;
     public int degatSpecial = 0;
     private int bonusVie = 0;
