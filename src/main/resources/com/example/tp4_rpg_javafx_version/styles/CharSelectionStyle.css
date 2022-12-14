@@ -1,0 +1,17 @@
+.root{
+    -fx-background-image: url('../image/charSelectionBG.jpg');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.label{
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: transparent;
+}
+
+.button{
+    -fx-text-fill: #FFD700;
+    -fx-border-color: transparent;
+    -fx-background-color: #000000;
+}

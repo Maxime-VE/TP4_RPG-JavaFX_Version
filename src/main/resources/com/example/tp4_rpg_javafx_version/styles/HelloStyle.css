@@ -1,0 +1,21 @@
+.root{
+    -fx-background-image: url('../image/Acceuil.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.button{
+    -fx-text-fill: #FFD700;
+    -fx-border-color: transparent;
+    -fx-background-color: #000000;
+}
+
+.label{
+    -fx-text-fill: #000000;
+    -fx-border-color: #000000;
+}
+.labelButton{
+    -fx-text-fill: #000000;
+    -fx-border-color: transparent;
+}

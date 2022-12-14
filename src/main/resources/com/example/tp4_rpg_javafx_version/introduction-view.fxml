@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/IntroductionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.IntroductionController">
+   <children>
+      <ImageView fitHeight="679.0" fitWidth="241.0">
+         <image>
+            <Image url="@image/oldPaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="679.0" fitWidth="241.0" layoutX="959.0" rotate="180.0">
+         <image>
+            <Image url="@image/oldPaper.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="279.0" layoutY="60.0" prefHeight="10.0" prefWidth="642.0" text="Dans un monde en paix, où vivaient les hommes, un royaume du nom de Mestoryth prospérait.">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="85.0" prefHeight="37.0" prefWidth="642.0" text="À sa tête un roi respecté de tous pour son courage et son sens de la justice.">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="139.0" prefHeight="38.0" prefWidth="618.0" text="Mais alors que tout le monde se réjouissait du calme environnant, dans les plus lointaines ">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="166.0" prefHeight="38.0" prefWidth="618.0" text="contrées de ce monde planait une aura maléfique.">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="277.0" layoutY="216.0" prefHeight="38.0" prefWidth="618.0" text="Un jour, l'oracle de Mestoryth fit une prophétie: ">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="277.0" layoutY="244.0" prefHeight="38.0" prefWidth="618.0" text="&quot;Dans dix lunes, une puissance démoniaque viendra aux portes du château armée de">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="281.0" layoutY="270.0" prefHeight="38.0" prefWidth="618.0" text="terribles monstres et détruira toute paix en ce monde&quot;.">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="315.0" prefHeight="38.0" prefWidth="618.0" text="Le roi soucieux de cette révélation fit le choix de réaliser un rituel secret afin d'invoquer de">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="339.0" prefHeight="38.0" prefWidth="618.0" text="nobles héros pour protéger le royaume...">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="388.0" prefHeight="38.0" prefWidth="618.0" text="Vous avez été élu par les divinités afin de protéger ce royaume. Vous pouvez être fier! ">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="412.0" prefHeight="38.0" prefWidth="618.0" text="Maintenant, vous allez devoir user de votre savoir pour composer une équipe de héros afin">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="437.0" prefHeight="38.0" prefWidth="618.0" text="de ramener l'ordre dans ce monde... ">
+         <font>
+            <Font name="Blackadder ITC" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="424.0" layoutY="525.0" prefHeight="100.0" prefWidth="341.0" text="Bonne Chance !">
+         <font>
+            <Font name="Blackadder ITC" size="59.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="77.0" fitWidth="142.0" layoutX="43.0" layoutY="560.0" onMouseClicked="#onNextButtonClick">
+         <image>
+            <Image url="@image/button.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="73.0" layoutY="583.0" onMouseClicked="#onNextButtonClick" styleClass="labelButton" text="NEXT">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

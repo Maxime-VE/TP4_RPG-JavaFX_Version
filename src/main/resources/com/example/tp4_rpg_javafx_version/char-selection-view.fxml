@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/CharSelectionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.CharSelectionController">
+   <children>
+      <ImageView fitHeight="177.0" fitWidth="110.0" layoutX="189.0" layoutY="176.0" onMouseClicked="#handleMouseClicked" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited">
+         <image>
+            <Image url="@image/warrior.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="177.0" fitWidth="135.0" layoutX="386.0" layoutY="161.0" onMouseClicked="#handleMouseClicked2" onMouseEntered="#handleMouseEntered2" onMouseExited="#handleMouseExited2">
+         <image>
+            <Image url="@image/archer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="220.0" fitWidth="197.0" layoutX="569.0" layoutY="131.0" onMouseClicked="#handleMouseClicked3" onMouseEntered="#handleMouseEntered3" onMouseExited="#handleMouseExited3">
+         <image>
+            <Image url="@image/mage.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="155.0" fitWidth="169.0" layoutX="807.0" layoutY="183.0" onMouseClicked="#handleMouseClicked4" onMouseEntered="#handleMouseEntered4" onMouseExited="#handleMouseExited4">
+         <image>
+            <Image url="@image/healer.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label1" layoutX="116.0" layoutY="348.0" prefHeight="59.0" prefWidth="286.0" text="Fort et courageux, ce combattant " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" layoutX="318.0" layoutY="357.0" prefHeight="44.0" prefWidth="322.0" text="Un manieur d'arme à distance ayant " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label4" layoutX="782.0" layoutY="357.0" prefHeight="44.0" prefWidth="271.0" text="Expert en sort de régénération." visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="411.0" layoutY="50.0" text="Choisissez vos Héros" textFill="#f2ff00">
+         <font>
+            <Font name="Blackadder ITC" size="53.0" />
+         </font>
+      </Label>
+      <Button fx:id="playButton" layoutX="967.0" layoutY="559.0" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="44.0" prefWidth="100.0" text="PLAY" visible="false">
+         <font>
+            <Font name="Rockwell Nova Extra Bold" size="19.0" />
+         </font>
+      </Button>
+      <TextField fx:id="textField" layoutX="398.0" layoutY="563.0" prefHeight="30.0" prefWidth="360.0" promptText="Entrez le nom du héro" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="acceptButton" layoutX="758.0" layoutY="565.0" mnemonicParsing="false" onAction="#onAcceptButtonClick" text="Accepter" visible="false">
+         <font>
+            <Font name="Rockwell Nova Extra Bold" size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imageWarrior" fitHeight="91.0" fitWidth="60.0" layoutX="286.0" layoutY="535.0" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" visible="false">
+         <image>
+            <Image url="@image/warrior.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageArcher" fitHeight="91.0" fitWidth="75.0" layoutX="283.0" layoutY="522.0" onMouseEntered="#handleMouseEntered2" onMouseExited="#handleMouseExited2" visible="false">
+         <image>
+            <Image url="@image/archer.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label12" layoutX="110.0" layoutY="376.0" prefHeight="59.0" prefWidth="298.0" text="polyvalent allie une attaque et une " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label13" layoutX="181.0" layoutY="405.0" prefHeight="59.0" prefWidth="142.0" text="défense modérée." visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label21" layoutX="316.0" layoutY="383.0" prefHeight="44.0" prefWidth="322.0" text="une faible résistance aux dégats mais" visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label22" layoutX="359.0" layoutY="412.0" prefHeight="44.0" prefWidth="236.0" text="une attaque spéciale efficace." visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label3" layoutX="558.0" layoutY="357.0" prefHeight="44.0" prefWidth="286.0" text="Un maître de sortilèges offensifs," visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label31" layoutX="543.0" layoutY="383.0" prefHeight="44.0" prefWidth="360.0" text="caractérisé par ses puissantes attaques " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label32" layoutX="581.0" layoutY="412.0" prefHeight="44.0" prefWidth="286.0" text="spéciales et sa faible défense." visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label41" layoutX="715.0" layoutY="385.0" prefHeight="44.0" prefWidth="389.0" text="Malgré son manque de point de vie, il possède " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label42" layoutX="719.0" layoutY="411.0" prefHeight="44.0" prefWidth="378.0" text="une très solide protection en mode défense et " visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label43" layoutX="758.0" layoutY="434.0" prefHeight="44.0" prefWidth="309.0" text="la capacité de soigner ses compagnons." visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageMage" fitHeight="136.0" fitWidth="110.0" layoutX="266.0" layoutY="495.0" onMouseClicked="#handleMouseClicked3" onMouseEntered="#handleMouseEntered3" onMouseExited="#handleMouseExited3" visible="false">
+         <image>
+            <Image url="@image/mage.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageHealer" fitHeight="99.0" fitWidth="86.0" layoutX="264.0" layoutY="530.0" onMouseClicked="#handleMouseClicked4" onMouseEntered="#handleMouseEntered4" onMouseExited="#handleMouseExited4" visible="false">
+         <image>
+            <Image url="@image/healer.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

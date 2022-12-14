@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/HelloStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.HelloController">
+    <children>
+      <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="500.0" layoutY="378.0" onMouseClicked="#onPlayButtonClick">
+         <image>
+            <Image url="@image/button.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Label1" layoutX="325.0" layoutY="18.0" text="Mini RPG Lite 3000">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="52.0" />
+         </font>
+      </Label>
+      <Label layoutX="533.0" layoutY="402.0" onMouseClicked="#onPlayButtonClick" styleClass="labelButton" text="PLAY">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="44.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="133.0" fitWidth="358.0" layoutX="421.0" layoutY="492.0" onMouseClicked="#onConsoleButtonClick">
+         <image>
+            <Image url="@image/button.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="458.0" layoutY="542.0" onMouseClicked="#onConsoleButtonClick" styleClass="labelButton" text="PLAY ON CONSOLE">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="25.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

@@ -1,0 +1,16 @@
+.root{
+    -fx-background-image: url('../image/mainBG.jpg');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.text-area *.content {
+    -fx-background-color: black;
+    -fx-text-fill: #ff0000
+}
+
+.eventWindow {
+    -fx-background-color: black;
+    -fx-text-fill: lime;
+}
