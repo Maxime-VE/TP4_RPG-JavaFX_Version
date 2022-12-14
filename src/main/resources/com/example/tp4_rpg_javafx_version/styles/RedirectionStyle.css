@@ -1,0 +1,6 @@
+.root{
+    -fx-background-image: url('../image/redirectionBG.jpg');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}

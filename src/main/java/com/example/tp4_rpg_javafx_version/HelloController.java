@@ -24,8 +24,11 @@ public class HelloController {
         HelloApplication.currentStage.show();
     }
     @FXML
-    void onConsoleButtonClick(MouseEvent event) {
+    void onConsoleButtonClick(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("redirection-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
+        HelloApplication.currentStage.setScene(scene);
+        HelloApplication.currentStage.show();
         displayMode=0;
-        Game.game();
     }
 }
