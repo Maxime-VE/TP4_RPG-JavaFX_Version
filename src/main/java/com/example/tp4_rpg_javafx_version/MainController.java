@@ -5,7 +5,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 import com.example.tp4_rpg_javafx_version.isep.rpg.*;
 
@@ -16,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import static com.example.tp4_rpg_javafx_version.CharSelectionController.heros;
 
@@ -62,9 +62,6 @@ public class MainController {
         System.out.print(s);
     }
 
-    public void button(ActionEvent event) {
-        Game.startConsole();
-    }
 
     public class Console extends OutputStream {
         private TextArea console;
@@ -87,7 +84,7 @@ public class MainController {
                                 //   4=Choix Action, 5=Attaque Normale, 6=Attaque Spe, 7=Accès Inventaire, 8=cibleConsommable
                                 //   9=Récompenses Automatiques, 10=]
     @FXML
-    void onActionClick(ActionEvent event) throws IOException {
+    void onActionClick(MouseEvent event) throws IOException {
 //        if(enemiesList.size() == 0){
 //            On part sur la fenêtre victoire
 //        }
@@ -170,7 +167,7 @@ public class MainController {
             case 4:
                 goodOne = heros.get(idHero);
                 choixAction = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixAction + "\n");
+                System.out.println("Joueur : " + choixAction + "\n");
 
                 switch (choixAction) {
                     case 1:
@@ -231,7 +228,7 @@ public class MainController {
             case 5:
                 goodOne = heros.get(idHero);
                 int choixCible = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixCible + "\n");
+                System.out.println("Joueur : " + choixCible + "\n");
                 Ennemy ennemy = enemies.get((choixCible - 1));                        //ATTAQUE SIMPLE SUR LA CIBLE
                 goodOne.fight(ennemy);
                 if (ennemy.getHealthPoint() <= 0) {
@@ -255,7 +252,7 @@ public class MainController {
             case 6:
                 goodOne = heros.get(idHero);
                 choixCible = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixCible + "\n");
+                System.out.println("Joueur : " + choixCible + "\n");
                 if (goodOne instanceof Healer) {
                     goodOne.special(heros.get((choixCible - 1)));
                 } else {                                                                  //ATTAQUE SPECIALE SUR LA CIBLE
@@ -283,7 +280,7 @@ public class MainController {
             case 7:
                 goodOne = heros.get(idHero);
                 int choixObjet = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixObjet + "\n");
+                System.out.println("Joueur : " + choixObjet + "\n");
                 switch (choixObjet) {
                     case 0:
                         etat=3;
@@ -431,7 +428,7 @@ public class MainController {
                 }break;
             case 8:
                 int choixCibleConsumable = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixCibleConsumable + "\n");
+                System.out.println("Joueur : " + choixCibleConsumable + "\n");
                 ArrayList<Combattant> ciblePotion = new ArrayList<>();
                 for(Combattant ally :heros) {
                     if (ally instanceof SpellCaster) {
@@ -584,7 +581,7 @@ public class MainController {
                 break;
             case 10:
                 int choixCibleWeapons = Integer.parseInt(textField.getText());
-                System.out.println("Joueur :" + choixCibleWeapons +"\n");
+                System.out.println("Joueur : " + choixCibleWeapons +"\n");
                 cibleWeapons = heros.get(choixCibleWeapons-1);
                 randomObjet = new Random();
                 if(cibleWeapons instanceof Warrior){

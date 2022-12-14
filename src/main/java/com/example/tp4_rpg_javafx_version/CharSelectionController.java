@@ -67,10 +67,30 @@ public class CharSelectionController {
 
     @FXML
     private Label label43;
+
     @FXML
-    private Button acceptButton;
+    private Label labelHealer;
+
     @FXML
-    private Button playButton;
+    private Label labelHunter;
+
+    @FXML
+    private Label labelMage;
+
+    @FXML
+    private Label labelWarrior;
+
+    @FXML
+    private ImageView acceptButtonImage;
+
+    @FXML
+    private Label acceptLabel;
+
+    @FXML
+    private ImageView playButtonImage;
+
+    @FXML
+    private Label playLabel;
     @FXML
     private TextField textField;
     public int charType;    // 0=Warrior , 1=Archer , 2=Mage , 3=Healer
@@ -78,7 +98,8 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked(MouseEvent event) {
-        acceptButton.setVisible(true);
+        acceptButtonImage.setVisible(true);
+        acceptLabel.setVisible(true);
         textField.setVisible(true);
         imageWarrior.setVisible(true);
         imageArcher.setVisible(false);
@@ -90,7 +111,8 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked2(MouseEvent event) {
-        acceptButton.setVisible(true);
+        acceptButtonImage.setVisible(true);
+        acceptLabel.setVisible(true);
         textField.setVisible(true);
         imageArcher.setVisible(true);
         imageWarrior.setVisible(false);
@@ -102,7 +124,8 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked3(MouseEvent event) {
-        acceptButton.setVisible(true);
+        acceptButtonImage.setVisible(true);
+        acceptLabel.setVisible(true);
         textField.setVisible(true);
         imageMage.setVisible(true);
         imageWarrior.setVisible(false);
@@ -114,7 +137,8 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked4(MouseEvent event) {
-        acceptButton.setVisible(true);
+        acceptButtonImage.setVisible(true);
+        acceptLabel.setVisible(true);
         textField.setVisible(true);
         imageHealer.setVisible(true);
         imageWarrior.setVisible(false);
@@ -126,6 +150,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseEntered(MouseEvent event) {
+        labelWarrior.setVisible(false);
         label1.setVisible(true);
         label12.setVisible(true);
         label13.setVisible(true);
@@ -133,6 +158,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseEntered2(MouseEvent event) {
+        labelHunter.setVisible(false);
         label2.setVisible(true);
         label21.setVisible(true);
         label22.setVisible(true);
@@ -140,12 +166,14 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseEntered3(MouseEvent event) {
+        labelMage.setVisible(false);
         label3.setVisible(true);
         label31.setVisible(true);
         label32.setVisible(true);
     }
     @FXML
     void handleMouseEntered4(MouseEvent event) {
+        labelHealer.setVisible(false);
         label4.setVisible(true);
         label41.setVisible(true);
         label42.setVisible(true);
@@ -153,6 +181,7 @@ public class CharSelectionController {
     }
     @FXML
     void handleMouseExited(MouseEvent event) {
+        labelWarrior.setVisible(true);
         label1.setVisible(false);
         label12.setVisible(false);
         label13.setVisible(false);
@@ -160,6 +189,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseExited2(MouseEvent event) {
+        labelHunter.setVisible(true);
         label2.setVisible(false);
         label21.setVisible(false);
         label22.setVisible(false);
@@ -167,12 +197,14 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseExited3(MouseEvent event) {
+        labelMage.setVisible(true);
         label3.setVisible(false);
         label31.setVisible(false);
         label32.setVisible(false);
     }
     @FXML
     void handleMouseExited4(MouseEvent event) {
+        labelHealer.setVisible(true);
         label4.setVisible(false);
         label41.setVisible(false);
         label42.setVisible(false);
@@ -180,15 +212,17 @@ public class CharSelectionController {
     }
 
     @FXML
-    void onAcceptButtonClick(ActionEvent event) {
+    void onAcceptButtonClick(MouseEvent event) {
         //RECUPERER LE NOM DU HERO
         textField.setVisible(false);
-        acceptButton.setVisible(false);
+        acceptButtonImage.setVisible(false);
+        acceptLabel.setVisible(false);
         imageWarrior.setVisible(false);
         imageArcher.setVisible(false);
         imageHealer.setVisible(false);
         imageMage.setVisible(false);
-        playButton.setVisible(true);
+        playButtonImage.setVisible(true);
+        playLabel.setVisible(true);
         switch (charType) {
             case 0 -> {
                 Warrior w = new Warrior(textField.getText(), 45, 13, false, 4);
@@ -216,7 +250,7 @@ public class CharSelectionController {
     }
 
     @FXML
-    void onPlayButtonClick(ActionEvent event)  throws IOException {
+    void onPlayButtonClick(MouseEvent event)  throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
         HelloApplication.currentStage.setScene(scene);

@@ -8,10 +8,17 @@
 .label{
     -fx-text-fill: #FFFFFF;
     -fx-border-color: transparent;
+    -fx-background-color: #000000;
+    -fx-opacity: .75;
 }
 
 .button{
     -fx-text-fill: #FFD700;
     -fx-border-color: transparent;
     -fx-background-color: #000000;
+}
+.labelButton{
+    -fx-text-fill: #000000;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
 }
