@@ -13,9 +13,9 @@
             <Image url="@image/button.png" />
          </image>
       </ImageView>
-      <Label fx:id="Label1" layoutX="325.0" layoutY="18.0" text="Mini RPG Lite 3000">
+      <Label fx:id="Label1" layoutX="253.0" layoutY="18.0" text="Mini RPG Lite 3000">
          <font>
-            <Font name="Copperplate Gothic Bold" size="52.0" />
+            <Font name="Copperplate Gothic Bold" size="68.0" />
          </font>
       </Label>
       <Label layoutX="533.0" layoutY="402.0" onMouseClicked="#onPlayButtonClick" styleClass="labelButton" text="PLAY">
