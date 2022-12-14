@@ -225,7 +225,7 @@ public class CharSelectionController {
         playLabel.setVisible(true);
         switch (charType) {
             case 0 -> {
-                Warrior w = new Warrior(textField.getText(), 45, 13, false, 4);
+                Warrior w = new Warrior(textField.getText(), 2, 13, false, 4);
                 w.take(new Weapon("Couteau", "Commun", 1));
                 heros.add(w);
             }
