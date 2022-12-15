@@ -17,6 +17,8 @@ import static com.example.tp4_rpg_javafx_version.HelloApplication.sound;
 
 public class CharSelectionController {
     @FXML
+    private Label approuvedLabel;
+    @FXML
     private ImageView offButton;
 
     @FXML
@@ -102,6 +104,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked(MouseEvent event) {
+        approuvedLabel.setVisible(false);
         acceptButtonImage.setVisible(true);
         acceptLabel.setVisible(true);
         textField.setVisible(true);
@@ -115,6 +118,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked2(MouseEvent event) {
+        approuvedLabel.setVisible(false);
         acceptButtonImage.setVisible(true);
         acceptLabel.setVisible(true);
         textField.setVisible(true);
@@ -128,6 +132,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked3(MouseEvent event) {
+        approuvedLabel.setVisible(false);
         acceptButtonImage.setVisible(true);
         acceptLabel.setVisible(true);
         textField.setVisible(true);
@@ -141,6 +146,7 @@ public class CharSelectionController {
 
     @FXML
     void handleMouseClicked4(MouseEvent event) {
+        approuvedLabel.setVisible(false);
         acceptButtonImage.setVisible(true);
         acceptLabel.setVisible(true);
         textField.setVisible(true);
@@ -218,6 +224,7 @@ public class CharSelectionController {
     @FXML
     void onAcceptButtonClick(MouseEvent event) {
         //RECUPERER LE NOM DU HERO
+        approuvedLabel.setVisible(true);
         textField.setVisible(false);
         acceptButtonImage.setVisible(false);
         acceptLabel.setVisible(false);
@@ -229,7 +236,7 @@ public class CharSelectionController {
         playLabel.setVisible(true);
         switch (charType) {
             case 0 -> {
-                Warrior w = new Warrior(textField.getText(), 45, 200, false, 4);
+                Warrior w = new Warrior(textField.getText(), 45, 13, false, 4);
                 w.take(new Weapon("Couteau", "Commun", 1));
                 heros.add(w);
             }

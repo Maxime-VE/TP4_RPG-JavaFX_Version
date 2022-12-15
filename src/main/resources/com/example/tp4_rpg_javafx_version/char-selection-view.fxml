@@ -179,5 +179,10 @@
             <Image url="@image/soundOff.png" />
          </image>
       </ImageView>
+      <Label fx:id="approuvedLabel" layoutX="455.0" layoutY="539.0" text="Héro sélectionné" textFill="#f2ff00" visible="false">
+         <font>
+            <Font name="Blackadder ITC" size="45.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

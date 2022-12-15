@@ -19,3 +19,14 @@
     -fx-text-fill: #000000;
     -fx-border-color: transparent;
 }
+
+.aboutPopUp{
+    -fx-background-image: url('../image/aboutBG.jpg');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.labelPopUp{
+    -fx-border-color: transparent;
+}

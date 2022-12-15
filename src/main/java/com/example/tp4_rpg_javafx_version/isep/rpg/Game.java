@@ -831,23 +831,23 @@ public class Game {
     //List<List<Weapon>> WeaponList = new ArrayList<List<Weapon>>();
 
     // NOMMAGE ARMES
-    static String[] [] wWeapons = {{"Commun","Couteau","Lance","Epée","Machette","Dague","Hache"},
+    static String[] [] wWeapons = {{"Commun","Couteau","Lance","Epee","Machette","Dague","Hache"},
             {"Rare","Sabre","Katana","Dague magique"},
             {"Epique","Faux","Trident","Hallebarde"},
-            {"Legendaire","Mjöllnir","Excalibur"}};
+            {"Legendaire","Mjollnir","Excalibur"}};
 
     static String[] [] hWeapons = {{"Commun","Arc court","Arc long","Arbalete"},
-            {"Rare","Arc amélioré","Arc perforant"},
+            {"Rare","Arc ameliore","Arc perforant"},
             {"Epique","Arc ensorcele","Arbalete ensorcelee"},
             {"Legendaire","Arc d'Ulysse","Arc d'Artemis"}};
 
     static String[] [] mWeapons = {{"Commun","Baguette magique", "Baton neutre","Grimoire interdit"},
-            {"Rare","Bâton de feu","Bâton de vent","Bâton de la foret","Bâton de glace"},
-            {"Epique","Baguette Météore","Foudrekane"},
+            {"Rare","Baton de feu","Baton de vent","Baton de la foret","Baton de glace"},
+            {"Epique","Baguette Meteore","Foudrekane"},
             {"Legendaire","Foudre de Zeus"}};
 
     static String[] [] heWeapons = {{"Commun","Diademe","Bague de regeneration","Charme de soin","Pendentif magique","Couronne magique"},
-            {"Rare","Bracelet d'Athéna","Bague de Promethee","Brassard de Lion"},
+            {"Rare","Bracelet d'Athena","Bague de Promethee","Brassard de Lion"},
             {"Epique","Collier d'Eir","Amulette merveilleuse"},
             {"Legendaire","Le Caducée","Graal","Plume de Phoenix"}};
 
@@ -855,9 +855,9 @@ public class Game {
 
 
     // BLOC NOMMAGE ENNEMIES
-    static String[] nomDragon = {"Voinit, le Rédempteur",
+    static String[] nomDragon = {"Voinit, le Redempteur",
             "Ziepeo, le Brillant",
-            "Freghoar, Cœur de Feu",
+            "Freghoar, Coeur de Feu",
             "Dyghug, le Mort",
             "Eimrei, Protecteur de la Montagne",
             "Zudreonth, le Tenace",

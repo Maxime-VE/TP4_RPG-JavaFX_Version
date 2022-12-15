@@ -1,12 +1,19 @@
 package com.example.tp4_rpg_javafx_version;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.application.HostServices;
+
+
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import static com.example.tp4_rpg_javafx_version.HelloApplication.sound;
 
@@ -18,7 +25,11 @@ public class HelloController {
     private ImageView offButton;
 
     @FXML
+    private AnchorPane popUp;
+    @FXML
     private ImageView onButton;
+
+    int about=0;
 
     @FXML
     protected void onPlayButtonClick() throws IOException
@@ -37,6 +48,19 @@ public class HelloController {
         HelloApplication.currentStage.show();
         displayMode=0;
     }
+
+    @FXML
+    void aboutButtonClicked(MouseEvent event) {
+        if (about==0){
+            popUp.setVisible(true);
+            about=1;
+        }else {
+            popUp.setVisible(false);
+            about=0;
+        }
+    }
+
+
 
     @FXML
     void onSoundButtonClick(MouseEvent event) {
