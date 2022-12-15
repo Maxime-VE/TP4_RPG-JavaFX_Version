@@ -52,4 +52,15 @@ public class HelloController {
             sound=0;
         }
     }
+
+    @FXML
+    void soundButtonVisibility(MouseEvent event) {
+        if(sound==0){
+            onButton.setVisible(true);
+            offButton.setVisible(false);
+        }else{
+            onButton.setVisible(false);
+            offButton.setVisible(true);
+        }
+    }
 }

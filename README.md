@@ -6,7 +6,6 @@
 
 
 1) Upgrade fin de manche
-2) Ecran Win
 3) Retirer tous les accents du txt
 
 ### Fait:
@@ -19,3 +18,5 @@
 7) Mettre au propre tous les boutons
 8) Ecran Game Over
 9) Ecran redirection console
+10) Ajout d'un fond sonore
+11) Ecran de victoire

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/HelloStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#soundButtonVisibility" prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/HelloStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.HelloController">
     <children>
       <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="500.0" layoutY="378.0" onMouseClicked="#onPlayButtonClick">
          <image>

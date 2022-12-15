@@ -1,5 +1,6 @@
 package com.example.tp4_rpg_javafx_version;
 
+import com.example.tp4_rpg_javafx_version.isep.rpg.Combattant;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
-public class DefaiteController {
+public class VictoryController {
 
     @FXML
     void exitButton(MouseEvent event) {
@@ -16,8 +17,8 @@ public class DefaiteController {
 
     @FXML
     void restartButton(MouseEvent event) throws IOException {
-        if (MainController.enemiesList.size() > 0) {
-            MainController.enemiesList.subList(0, MainController.enemiesList.size()).clear();
+        if (CharSelectionController.heros.size() > 0) {
+            CharSelectionController.heros.subList(0, CharSelectionController.heros.size()).clear();
         }
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);

@@ -132,16 +132,25 @@ public class MainController {
                     enemiesList.remove(0);
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
-                        //TODO ramener vers écran de victoire
+                        HelloApplication.mediaPlayer.stop();
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("victory-view.fxml"));
+                        Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
+                        HelloApplication.currentStage.setScene(scene);
+                        HelloApplication.currentStage.show();
                         break;
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
                     //TODO ramener vers les récompenses
-                    etat=1;
+                    etat=9;
                     break;
                 }
                 Game.attaqueEnnemie(heros, enemies);
                 if (heros.size() == 0) {
+                    HelloApplication.mediaPlayer.stop();
+                    if (MainController.enemiesList.size() > 0) {
+                        MainController.enemiesList.subList(0, MainController.enemiesList.size()).clear();
+                        enemies.subList(0, enemies.size()).clear();
+                    }
                     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("defaite-view.fxml"));
                     Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
                     HelloApplication.currentStage.setScene(scene);
@@ -157,7 +166,10 @@ public class MainController {
                     enemiesList.remove(0);
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
-                        //TODO ramener vers écran de victoire
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("victory-view.fxml"));
+                        Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
+                        HelloApplication.currentStage.setScene(scene);
+                        HelloApplication.currentStage.show();
                         break;
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");

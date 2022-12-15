@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/VictoryStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.VictoryController">
+    <children>
+        <Label layoutX="362.0" layoutY="73.0" text="YOU WON" textFill="#ffcb0f" underline="true">
+            <font>
+                <Font name="Blackadder ITC" size="88.0" />
+            </font>
+        </Label>
+        <Label layoutX="97.0" layoutY="225.0" text="CONGRATULATIONS" textFill="#ffcb0e" underline="true">
+            <font>
+                <Font name="Blackadder ITC" size="88.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="140.0" fitWidth="268.0" layoutX="781.0" layoutY="459.0" onMouseClicked="#exitButton">
+            <image>
+                <Image url="@image/button.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="140.0" fitWidth="268.0" layoutX="152.0" layoutY="459.0" onMouseClicked="#restartButton">
+            <image>
+                <Image url="@image/button.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="191.0" layoutY="509.0" onMouseClicked="#restartButton" text="RESTART">
+            <font>
+                <Font name="Copperplate Gothic Bold" size="36.0" />
+            </font>
+        </Label>
+        <Label layoutX="839.0" layoutY="495.0" onMouseClicked="#exitButton" text="EXIT">
+            <font>
+                <Font name="Copperplate Gothic Bold" size="60.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
