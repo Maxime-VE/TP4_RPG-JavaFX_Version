@@ -20,6 +20,8 @@ public class VictoryController {
         if (CharSelectionController.heros.size() > 0) {
             CharSelectionController.heros.subList(0, CharSelectionController.heros.size()).clear();
         }
+        HelloApplication.mediaPlayer.stop();
+        HelloApplication.playMainSound();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
         HelloApplication.currentStage.setScene(scene);

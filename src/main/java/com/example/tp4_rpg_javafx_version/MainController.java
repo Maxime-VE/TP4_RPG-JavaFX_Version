@@ -185,6 +185,7 @@ public class MainController {
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
                         HelloApplication.mediaPlayer.stop();
+                        HelloApplication.playVictorySound();
                         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("victory-view.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
                         HelloApplication.currentStage.setScene(scene);
@@ -200,6 +201,7 @@ public class MainController {
                 Game.attaqueEnnemie(heros, enemies);
                 if (heros.size() == 0) {
                     HelloApplication.mediaPlayer.stop();
+                    HelloApplication.playDefeatSound();
                     if (MainController.enemiesList.size() > 0) {
                         MainController.enemiesList.subList(0, MainController.enemiesList.size()).clear();
                         enemies.subList(0, enemies.size()).clear();
@@ -225,6 +227,8 @@ public class MainController {
                     enemiesList.remove(0);
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
+                        HelloApplication.mediaPlayer.stop();
+                        HelloApplication.playVictorySound();
                         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("victory-view.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
                         HelloApplication.currentStage.setScene(scene);

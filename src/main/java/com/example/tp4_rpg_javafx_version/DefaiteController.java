@@ -19,6 +19,8 @@ public class DefaiteController {
         if (MainController.enemiesList.size() > 0) {
             MainController.enemiesList.subList(0, MainController.enemiesList.size()).clear();
         }
+        HelloApplication.mediaPlayer.stop();
+        HelloApplication.playMainSound();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
         HelloApplication.currentStage.setScene(scene);
