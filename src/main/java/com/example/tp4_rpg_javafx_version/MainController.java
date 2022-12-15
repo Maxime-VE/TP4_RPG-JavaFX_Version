@@ -610,19 +610,19 @@ public class MainController {
                     int rareteWeapon = randomObjet.nextInt(101);
                     if (rareteWeapon <= 46) {
                         weaponName = Game.nommageWeapon(Game.weaponList[0], 0);
-                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        degatCommonWeapon = randomObjet.nextInt(2,4);
                         description = "Commun";
                     } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
                         weaponName = Game.nommageWeapon(Game.weaponList[0], 1);
-                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        degatCommonWeapon = randomObjet.nextInt(4, 7);
                         description = "Rare";
                     } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
                         weaponName = Game.nommageWeapon(Game.weaponList[0], 2);
-                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        degatCommonWeapon = randomObjet.nextInt(7, 10);
                         description = "Epique";
                     } else {
                         weaponName = Game.nommageWeapon(Game.weaponList[0], 3);
-                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        degatCommonWeapon = randomObjet.nextInt(9, 12);
                         description = "Legendaire";
                     }
                     weapons = new Weapon(weaponName, description, degatCommonWeapon);
@@ -639,19 +639,19 @@ public class MainController {
                     int rareteWeapon = randomObjet.nextInt(101);
                     if (rareteWeapon <= 46) {
                         weaponName = Game.nommageWeapon(Game.weaponList[1], 0);
-                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        degatCommonWeapon = randomObjet.nextInt(2,4);
                         description = "Commun";
                     } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
                         weaponName = Game.nommageWeapon(Game.weaponList[1], 1);
-                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        degatCommonWeapon = randomObjet.nextInt(4, 7);
                         description = "Rare";
                     } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
                         weaponName = Game.nommageWeapon(Game.weaponList[1], 2);
-                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        degatCommonWeapon = randomObjet.nextInt(7, 10);
                         description = "Epique";
                     } else {
                         weaponName = Game.nommageWeapon(Game.weaponList[1], 3);
-                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        degatCommonWeapon = randomObjet.nextInt(9, 12);
                         description = "Legendaire";
                     }
                     weapons = new Weapon(weaponName, description, degatCommonWeapon);
@@ -668,19 +668,19 @@ public class MainController {
                     int rareteWeapon = randomObjet.nextInt(101);
                     if (rareteWeapon <= 46) {
                         weaponName = Game.nommageWeapon(Game.weaponList[2], 0);
-                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        degatCommonWeapon = randomObjet.nextInt(2,4);
                         description = "Commun";
                     } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
                         weaponName = Game.nommageWeapon(Game.weaponList[2], 1);
-                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        degatCommonWeapon = randomObjet.nextInt(4,7);
                         description = "Rare";
                     } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
                         weaponName = Game.nommageWeapon(Game.weaponList[2], 2);
-                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        degatCommonWeapon = randomObjet.nextInt(7, 10);
                         description = "Epique";
                     } else {
                         weaponName = Game.nommageWeapon(Game.weaponList[2], 3);
-                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        degatCommonWeapon = randomObjet.nextInt(9,12);
                         description = "Legendaire";
                     }
                     weapons = new Weapon(weaponName, description, degatCommonWeapon);
@@ -697,19 +697,19 @@ public class MainController {
                     int rareteWeapon = randomObjet.nextInt(101);
                     if (rareteWeapon <= 46) {
                         weaponName = Game.nommageWeapon(Game.weaponList[0], 0);
-                        degatCommonWeapon = randomObjet.nextInt(4,8);
+                        degatCommonWeapon = randomObjet.nextInt(2,4);
                         description = "Commun";
                     } else if (rareteWeapon > 46 && rareteWeapon <= 75) {
                         weaponName = Game.nommageWeapon(Game.weaponList[3], 1);
-                        degatCommonWeapon = randomObjet.nextInt(6, 10);
+                        degatCommonWeapon = randomObjet.nextInt(4, 7);
                         description = "Rare";
                     } else if (rareteWeapon > 75  && rareteWeapon <= 92) {
                         weaponName = Game.nommageWeapon(Game.weaponList[3], 2);
-                        degatCommonWeapon = randomObjet.nextInt(9, 13);
+                        degatCommonWeapon = randomObjet.nextInt(7, 10);
                         description = "Epique";
                     } else {
                         weaponName = Game.nommageWeapon(Game.weaponList[3], 3);
-                        degatCommonWeapon = randomObjet.nextInt(13, 19);
+                        degatCommonWeapon = randomObjet.nextInt(9, 12);
                         description = "Legendaire";
                     }
                     weapons = new Weapon(weaponName, description, degatCommonWeapon);

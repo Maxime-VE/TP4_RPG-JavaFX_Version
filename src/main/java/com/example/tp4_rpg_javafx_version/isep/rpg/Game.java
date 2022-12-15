@@ -413,7 +413,7 @@ public class Game {
         if (heroPresent[1] == 1){
             for (Combattant c : h){
                 if (c instanceof Hunter) {
-                    int flecheReward = randomObjet.nextInt(5,9);
+                    int flecheReward = randomObjet.nextInt(2,7);
                     ((Hunter) c).rechargeFleche(flecheReward);
                 }
             }
@@ -456,19 +456,19 @@ public class Game {
         int rareteWeapon = randomObjet.nextInt(101);
         if (rareteWeapon <= 40) {
             weaponName = nommageWeapon(listWeapon[typeHero], 0);
-            degatCommonWeapon = randomObjet.nextInt(4,8);
+            degatCommonWeapon = randomObjet.nextInt(2,4);
             description = "\033[1;37m"+"Commun"+"\033[0m";
         } else if (rareteWeapon > 40 && rareteWeapon <= 70) {
             weaponName = nommageWeapon(listWeapon[typeHero], 1);
-            degatCommonWeapon = randomObjet.nextInt(6, 10);
+            degatCommonWeapon = randomObjet.nextInt(4,7);
             description = "\033[1;34m"+"Rare"+"\033[0m";
         } else if (rareteWeapon > 70  && rareteWeapon <= 90) {
             weaponName = nommageWeapon(listWeapon[typeHero], 2);
-            degatCommonWeapon = randomObjet.nextInt(9, 13);
+            degatCommonWeapon = randomObjet.nextInt(7, 10);
             description = "\033[1;35m"+"Epique"+"\033[0m";
         } else {
             weaponName = nommageWeapon(listWeapon[typeHero], 3);
-            degatCommonWeapon = randomObjet.nextInt(13, 19);
+            degatCommonWeapon = randomObjet.nextInt(9, 12);
             description = "\033[1;33m"+"Légendaire"+"\033[0m";
         }
         Weapon w = new Weapon(weaponName, description, degatCommonWeapon);
