@@ -51,23 +51,23 @@ public class Game {
             // INITIALISATION HEROS
             //##########################################################################################################
 
-            System.out.println("Veuillez choisir le nombre de héros partant à l'aventure.");
+            System.out.println("Veuillez choisir le nombre de heros partant a l'aventure.");
             Scanner scanner = new Scanner(System.in);
             int nb_Hero = scanner.nextInt();
             while (nb_Hero > 6) {
-                System.out.println(" Seulement 6 héros maximum peuvent partir à l'aventure !");
+                System.out.println(" Seulement 6 heros maximum peuvent partir a l'aventure !");
                 nb_Hero = scanner.nextInt();
             }
             for (int i = 0; i < nb_Hero; i++) {
-                System.out.println(" Quel sera votre héro n°" + (i + 1) + " ?");
+                System.out.println(" Quel sera votre hero n°" + (i + 1) + " ?");
                 System.out.println("""
-                        1- Warrior : Fort et courageux, ce combattant polyvalent allie une attaque et une défense modérée.\s
-                        2- Hunter : Un manieur d'arme à distance ayant une faible résistance aux dégats mais une attaque spéciale efficace.
-                        3- Mage : Un maître de sortilèges offensifs, caractérisé par ses puissantes attaques et sa faible défense.\s
-                        4- Healer : Expert en sort de régénération. Malgré son manque de point de vie, il possède une très solide protection en mode défense et la capacité de soigner ses compagnons.""");
+                        1- Warrior : Fort et courageux, ce combattant polyvalent allie une attaque et une defense moderee.\s
+                        2- Hunter : Un manieur d'arme a distance ayant une faible resistance aux degats mais une attaque speciale efficace.
+                        3- Mage : Un maitre de sortileges offensifs, caracterise par ses puissantes attaques et sa faible defense.\s
+                        4- Healer : Expert en sort de regeneration. Malgre son manque de point de vie, il possede une tres solide protection en mode défense et la capacité de soigner ses compagnons.""");
                 while (!scanner.hasNextInt()) {
                     scanner.nextLine(); //clear the invalid input before prompting again
-                    System.out.println("Veuillez sélectionner le numéro du héro souhaité :  ");
+                    System.out.println("Veuillez selectionner le numero du hero souhaite :  ");
                 }
                 int type_Hero = scanner.nextInt();
                 switch (type_Hero) {
@@ -144,7 +144,7 @@ public class Game {
             int nombreEnnemy = (int) ((heros.size() / 2) + 1);
             initialisationEnnemy(nombreEnnemy, enemiesList, manche1, manche2, manche3, manche4, manche5);
         }
-        System.out.println(" Début de la partie ");
+        System.out.println(" Debut de la partie ");
         userDelay();
         ArrayList<Ennemy> enemies;
         int idHero = 0;
@@ -154,7 +154,7 @@ public class Game {
 
             enemies = enemiesList.get(0);
             manche +=1; // Compteur de manche
-            System.out.print("C'est le début de la manche n°" + manche + " et vous allez affronter ");
+            System.out.print("C'est le debut de la manche n°" + manche + " et vous allez affronter ");
             if (enemies.size()!=1){
                 for (Ennemy e : enemies){
                     System.out.print(e.getName() + ", ");
@@ -325,8 +325,8 @@ public class Game {
                 if (h.size() == 0) {
                     userDelay();
                     System.out.println("""
-                            Malgré leur courage, les Héros ont tous été vaincu par les monstres menaçant la paix.\s
-                            Plus rien désormais ne peut sauver l'humanité\s
+                            Malgre leur courage, les Héros ont tous été vaincu par les monstres menacant la paix.\s
+                            Plus rien desormais ne peut sauver l'humanite\s
                             GAME OVER""");
                     if(HelloController.displayMode==0){
                         System.exit(0);
@@ -614,7 +614,7 @@ public class Game {
                                 "Nourriture : \n" +
                                 "1- Nuka-Cola : + " + food.puissanceNukaCola + " PV (" + food.compteurNukaCola + " en stock) \n" +
                                 "2- Bento : + " + food.puissanceBento + " PV (" + food.compteurBento + " en stock) \n" +
-                                "3- Ragoût : + " + food.puissanceRagout + " PV (" + food.compteurRagout + " en stock) \n" +
+                                "3- Ragout : + " + food.puissanceRagout + " PV (" + food.compteurRagout + " en stock) \n" +
                                 "Potion : (Uniquement pour des utilisateurs de sort : Mage & Healer) \n" +
                                 "4- Mini Potion : +" + potion.puissanceMiniPotion + "Mana (" + potion.compteurMiniPotion +" en stock)\n" +
                                 "5- Potion : +" + potion.puissancePotion + "Mana (" + potion.compteurPotion +" en stock) \n" +
@@ -670,7 +670,7 @@ public class Game {
 
                             case 3:
                                 if(food.compteurRagout > 0) {
-                                    System.out.println("Sur qui est-ce que " + c.getName() + " souhaite utiliser l'objet Ragoût ?");
+                                    System.out.println("Sur qui est-ce que " + c.getName() + " souhaite utiliser l'objet Ragout ?");
                                     int compteurid = 1;
                                     ArrayList<Combattant> cibleFood = new ArrayList<>();
                                     for(Combattant ally :h) {
@@ -683,7 +683,7 @@ public class Game {
                                     food.useRagout(cibleFood.get((idFood-1)));
                                     break;
                                 } else {
-                                    System.out.println("Vous n'avez plus de Ragoût");
+                                    System.out.println("Vous n'avez plus de Ragout");
                                     userDelay();
                                     compteurObjet--;
                                     break;
@@ -836,18 +836,18 @@ public class Game {
             {"Epique","Faux","Trident","Hallebarde"},
             {"Legendaire","Mjöllnir","Excalibur"}};
 
-    static String[] [] hWeapons = {{"Commun","Arc court","Arc long","Arbalète"},
+    static String[] [] hWeapons = {{"Commun","Arc court","Arc long","Arbalete"},
             {"Rare","Arc amélioré","Arc perforant"},
-            {"Epique","Arc ensorcelé","Arbalète ensorcelée"},
-            {"Legendaire","Arc d'Ulysse","Arc d'Artémis"}};
+            {"Epique","Arc ensorcele","Arbalete ensorcelee"},
+            {"Legendaire","Arc d'Ulysse","Arc d'Artemis"}};
 
-    static String[] [] mWeapons = {{"Commun","Baguette magique", "Bâton neutre","Grimoire interdit"},
-            {"Rare","Bâton de feu","Bâton de vent","Bâton de la forêt","Bâton de glace"},
+    static String[] [] mWeapons = {{"Commun","Baguette magique", "Baton neutre","Grimoire interdit"},
+            {"Rare","Bâton de feu","Bâton de vent","Bâton de la foret","Bâton de glace"},
             {"Epique","Baguette Météore","Foudrekane"},
             {"Legendaire","Foudre de Zeus"}};
 
-    static String[] [] heWeapons = {{"Commun","Diadème","Bague de régénération","Charme de soin","Pendentif magique","Couronne magique"},
-            {"Rare","Bracelet d'Athéna","Bague de Prométhée","Brassard de Lion"},
+    static String[] [] heWeapons = {{"Commun","Diademe","Bague de regeneration","Charme de soin","Pendentif magique","Couronne magique"},
+            {"Rare","Bracelet d'Athéna","Bague de Promethee","Brassard de Lion"},
             {"Epique","Collier d'Eir","Amulette merveilleuse"},
             {"Legendaire","Le Caducée","Graal","Plume de Phoenix"}};
 

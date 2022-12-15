@@ -14,27 +14,27 @@ public class Warrior extends Hero{
     @Override
     public void fight(Combattant combattant) {
         System.out.println(getName() + " lance une attaque !");
-        System.out.println(getName() + " inflige " + degatTotal + " points de degat à " + combattant.getName());
+        System.out.println(getName() + " inflige " + degatTotal + " points de degat a " + combattant.getName());
         combattant.loose(degatTotal);
     }
     public void sayAction() {
         System.out.println("""
                 1- Attaque\s
-                2- Attaque Spéciale (Chance d'infliger une attaque entre 0,5 et 1,5 fois plus forte que Attaque)\s
+                2- Attaque Speciale (Chance d'infliger une attaque entre 0,5 et 1,5 fois plus forte que Attaque)\s
                 3- Protection\s
                 4- Objet""");
     }
 
 
     public void sayUpgrade() {
-        System.out.println("Veuillez choisir la récompense de " + getName());
+        System.out.println("Veuillez choisir la recompense de " + getName());
         userDelay();
         actualStatus();
         System.out.println("""
-                1- Amélioration des dégats\s
-                2- Amélioration de l'efficacité de l'attaque spéciale\s
-                3- Amélioration de la défense\s
-                4- Amélioration de l'efficacité des objets""");
+                1- Amelioration des degats\s
+                2- Amelioration de l'efficacite de l'attaque speciale\s
+                3- Amelioration de la defense\s
+                4- Amelioration de l'efficacite des objets""");
         Scanner scanChoix = new Scanner(System.in);
         int choix = scanChoix.nextInt();
         switch (choix) {
@@ -45,16 +45,16 @@ public class Warrior extends Hero{
                 break;
             case 2:
                 degatSpecial += 4;
-                System.out.println(getName() + " maîtrise mieux son attaque spéciale !");
+                System.out.println(getName() + " maitrise mieux son attaque speciale !");
                 break;
             case 3:
                 addResistance(2);
-                System.out.println(getName() + " se sent plus résistant !");
+                System.out.println(getName() + " se sent plus resistant !");
                 break;
             case 4:
                 bonusVie += 2;
                 soinBonus = bonusVie;
-                System.out.println(getName() + " est plus réceptif aux effets des objets !");
+                System.out.println(getName() + " est plus receptif aux effets des objets !");
                 break;
         }
 
@@ -66,7 +66,7 @@ public class Warrior extends Hero{
     }
 
     public void protection() {
-        System.out.println(getName() + " se protège !");
+        System.out.println(getName() + " se protege !");
         isProtected = true;
     }
 
@@ -74,9 +74,9 @@ public class Warrior extends Hero{
         Random random = new Random();
         float randomForce = random.nextFloat();
         randomForce += 0.5;
-        System.out.println(getName() + " lance une attaque spéciale !");
+        System.out.println(getName() + " lance une attaque speciale !");
         int attack = (int) ((degatTotal*randomForce)+degatSpecial);
-        System.out.println(getName() + " inflige " + attack + " points de degat à " + combattant.getName());
+        System.out.println(getName() + " inflige " + attack + " points de degat a " + combattant.getName());
         combattant.loose(attack);
     }
 
@@ -86,7 +86,7 @@ public class Warrior extends Hero{
     public void take(Item item) {
         if (item instanceof Weapon) {
             weapon = (Weapon) item;
-            System.out.println(getName() + " se voit confier l'arme " + item.getName() + " (+" + ((Weapon) item).getDamagePoints() + " dégats)");
+            System.out.println(getName() + " se voit confier l'arme " + item.getName() + " (+" + ((Weapon) item).getDamagePoints() + " degats)");
             degatTotal = getDegat() + ((Weapon) item).getDamagePoints();
             currentWeaponList.add(weapon);
         } else {
@@ -96,13 +96,13 @@ public class Warrior extends Hero{
 
     @Override
     public void changeWeapon(Weapon item) {
-        System.out.println(getName() + " récupère " + item.getName()+ " (+" + ((Weapon) item).getDamagePoints() + " dégats)");
+        System.out.println(getName() + " recupere " + item.getName()+ " (+" + ((Weapon) item).getDamagePoints() + " degats)");
         if (currentWeaponList.size() == 0) {
             take(item);
         } else {
             Weapon currentWeapon = currentWeaponList.get(0);
-            System.out.println("Mais " + getName() + " possède déjà " + currentWeapon.getName() + " (+" + currentWeapon.getDamagePoints() + " dégats)" );
-            System.out.println("Souhaitez-vous changer l'équipement de " + getName() + " ? [y/n]");
+            System.out.println("Mais " + getName() + " possede deja " + currentWeapon.getName() + " (+" + currentWeapon.getDamagePoints() + " degats)" );
+            System.out.println("Souhaitez-vous changer l'equipement de " + getName() + " ? [y/n]");
             Scanner scanChoixWeapon = new Scanner(System.in);
             String choixWeapon = scanChoixWeapon.nextLine();
             if (Objects.equals(choixWeapon, "y")) {

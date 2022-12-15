@@ -18,7 +18,7 @@ public class Dragon extends Ennemy{
             degatInfliges=0;
         }
         if (combattant.getProtection()) {
-            System.out.println(combattant.getName() + " est protégé !");
+            System.out.println(combattant.getName() + " est protege !");
             int attack = (int) (degatInfliges/1.6);
             combattant.loose(attack);
             System.out.println("Il inflige " + attack + " points de degat");

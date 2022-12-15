@@ -23,38 +23,38 @@ public class Potion extends Consumable {
             return;
         }
         compteurMiniPotion += p ;
-        System.out.println("Vous récupérez " + p + " Mini Potion ! ");
+        System.out.println("Vous recuperez " + p + " Mini Potion ! ");
         userDelay();}
     public void rechargeMaxiPotion(int p) {
         if (p == 0 ){
             return;
         }
         compteurMaxiPotion += p ;
-        System.out.println("Vous récupérez " + p + " Maxi Potion ! ");
+        System.out.println("Vous recuperez " + p + " Maxi Potion ! ");
         userDelay();}
     public void rechargePotion(int p) {
         if (p == 0 ){
             return;
         }
         compteurPotion += p ;
-        System.out.println("Vous récupérez " + p + " Potion ! ");
+        System.out.println("Vous recuperez " + p + " Potion ! ");
         userDelay();}
 
 
     public void usePotion(SpellCaster combattant) {
-            System.out.println(combattant.getName() + " utilise une Potion +20 Mana et récupère du mana");
+            System.out.println(combattant.getName() + " utilise une Potion +20 Mana et recupere du mana");
             compteurPotion -=1;
             combattant.setMana(puissancePotion+combattant.soinBonus);
     }
 
     public void useMiniPotion(SpellCaster combattant) {
-        System.out.println(combattant.getName() + " utilise une mini Potion +10 Mana et récupère du mana");
+        System.out.println(combattant.getName() + " utilise une mini Potion +10 Mana et recupere du mana");
         compteurMiniPotion -=1;
         combattant.setMana(puissanceMiniPotion+combattant.soinBonus);
     }
 
     public void useMaxiPotion(SpellCaster combattant) {
-        System.out.println(combattant.getName() + " utilise une maxi Potion +30 Mana et récupère du mana");
+        System.out.println(combattant.getName() + " utilise une maxi Potion +30 Mana et recupere du mana");
         compteurMaxiPotion -=1;
         combattant.setMana(puissanceMaxiPotion+combattant.soinBonus);
     }

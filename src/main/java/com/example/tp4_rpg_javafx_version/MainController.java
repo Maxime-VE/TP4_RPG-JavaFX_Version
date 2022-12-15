@@ -123,7 +123,7 @@ public class MainController {
                     etat = 2;
                 } else {
                     etat = 3;
-                    System.out.println("\n" + "C'est au tour des héros d'attaquer");
+                    System.out.println("\n" + "C'est au tour des heros d'attaquer");
                 }
                 break;
             case 2:
@@ -235,7 +235,7 @@ public class MainController {
                                 "Nourriture : \n" +
                                 "1- Nuka-Cola : + " + food.puissanceNukaCola + " PV (" + food.compteurNukaCola + " en stock) \n" +
                                 "2- Bento : + " + food.puissanceBento + " PV (" + food.compteurBento + " en stock) \n" +
-                                "3- Ragoût : + " + food.puissanceRagout + " PV (" + food.compteurRagout + " en stock) \n" +
+                                "3- Ragout : + " + food.puissanceRagout + " PV (" + food.compteurRagout + " en stock) \n" +
                                 "Potion : (Uniquement pour des utilisateurs de sort : Mage & Healer) \n" +
                                 "4- Mini Potion : +" + potion.puissanceMiniPotion + "Mana (" + potion.compteurMiniPotion + " en stock)\n" +
                                 "5- Potion : +" + potion.puissancePotion + "Mana (" + potion.compteurPotion + " en stock) \n" +
@@ -252,7 +252,7 @@ public class MainController {
                 goodOne.fight(ennemy);
                 if (ennemy.getHealthPoint() <= 0) {
                     enemies.remove((choixCible - 1));
-                    System.out.println("\n" + "Les Héros ont vaincu " + ennemy.getName() + " !");
+                    System.out.println("\n" + "Les Heros ont vaincu " + ennemy.getName() + " !");
                 }
                 if (enemies.size() == 0) {
                     etat=3;
@@ -280,7 +280,7 @@ public class MainController {
                     goodOne.special(ennemy);
                     if (ennemy.getHealthPoint() <= 0) {
                         enemies.remove((choixCible - 1));
-                        System.out.println("\n" + " Les Héros ont vaincu " + ennemy.getName() + " !");
+                        System.out.println("\n" + " Les Heros ont vaincu " + ennemy.getName() + " !");
                     }
                 }
                 if (enemies.size() == 0) {
@@ -372,7 +372,7 @@ public class MainController {
                                 }
                             }
                             if (ciblePotion.size() == 0 ) {
-                                System.out.println("Aucun héro ne peut recevoir de potion !");
+                                System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
                                 etat=3;
                                 break;
@@ -400,7 +400,7 @@ public class MainController {
                                 }
                             }
                             if (ciblePotion.size() == 0 ) {
-                                System.out.println("Aucun héro ne peut recevoir de potion !");
+                                System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
                                 etat=3;
                                 break;
@@ -429,7 +429,7 @@ public class MainController {
                                 }
                             }
                             if (ciblePotion.size() == 0 ) {
-                                System.out.println("Aucun héro ne peut recevoir de potion !");
+                                System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
                                 etat=3;
                                 break;
