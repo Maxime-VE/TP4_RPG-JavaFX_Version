@@ -21,7 +21,7 @@
             <Image url="@image/button.png" />
          </image>
       </ImageView>
-      <Label layoutX="1004.0" layoutY="627.0" onMouseClicked="#onActionClick" prefHeight="26.0" prefWidth="98.0" text="Démarrage">
+      <Label fx:id="etatLabel" layoutX="1004.0" layoutY="627.0" onMouseClicked="#onActionClick" prefHeight="26.0" prefWidth="98.0" text="Démarrage">
          <font>
             <Font name="Copperplate Gothic Bold" size="14.0" />
          </font>
@@ -34,6 +34,56 @@
       <ImageView fx:id="onButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="14.0" onMouseClicked="#onSoundButtonClick" visible="false">
          <image>
             <Image url="@image/soundOn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="slimeImage" fitHeight="264.0" fitWidth="228.0" layoutX="970.0" layoutY="208.0" visible="false">
+         <image>
+            <Image url="@image/slime.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="golemImage" fitHeight="280.0" fitWidth="228.0" layoutX="972.0" layoutY="198.0" visible="false">
+         <image>
+            <Image url="@image/golem.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="goblinImage" fitHeight="264.0" fitWidth="236.0" layoutX="964.0" layoutY="208.0" visible="false">
+         <image>
+            <Image url="@image/goblin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="dragonImage" fitHeight="264.0" fitWidth="236.0" layoutX="964.0" layoutY="208.0" visible="false">
+         <image>
+            <Image url="@image/dragon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="demonImage" fitHeight="246.0" fitWidth="217.0" layoutX="972.0" layoutY="198.0" visible="false">
+         <image>
+            <Image url="@image/demon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="treasureImage" fitHeight="246.0" fitWidth="217.0" layoutX="982.0" layoutY="208.0" visible="false">
+         <image>
+            <Image url="@image/treasure.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hunterImage" fitHeight="310.0" fitWidth="217.0" layoutX="1.0" layoutY="190.0" visible="false">
+         <image>
+            <Image url="@image/archer.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="mageImage" fitHeight="442.0" fitWidth="324.0" layoutX="-58.0" layoutY="100.0" visible="false">
+         <image>
+            <Image url="@image/mage.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="healerImage" fitHeight="333.0" fitWidth="257.0" layoutX="-27.0" layoutY="201.0" visible="false">
+         <image>
+            <Image url="@image/healer.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="warriorImage" fitHeight="350.0" fitWidth="202.0" layoutX="9.0" layoutY="170.0" visible="false">
+         <image>
+            <Image url="@image/warrior.png" />
          </image>
       </ImageView>
    </children>

@@ -9,10 +9,10 @@ import java.util.Random;
 import com.example.tp4_rpg_javafx_version.isep.rpg.*;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -24,10 +24,34 @@ import static com.example.tp4_rpg_javafx_version.HelloApplication.sound;
 
 public class MainController {
     @FXML
+    private ImageView demonImage;
+    @FXML
+    private ImageView dragonImage;
+    @FXML
+    private ImageView goblinImage;
+    @FXML
+    private ImageView golemImage;
+    @FXML
+    private ImageView slimeImage;
+
+    @FXML
+    private ImageView healerImage;
+    @FXML
+    private ImageView hunterImage;
+    @FXML
+    private ImageView mageImage;
+    @FXML
+    private ImageView warriorImage;
+    @FXML
+    private ImageView treasureImage;
+    @FXML
     private ImageView offButton;
 
     @FXML
     private ImageView onButton;
+
+    @FXML
+    private Label etatLabel;
 
     @FXML
     private TextArea console;
@@ -105,10 +129,31 @@ public class MainController {
             case 1:
                 enemies = enemiesList.get(0);
                 manche += 1; // Compteur de manche
+                switch(manche){
+                    case 1:
+                        slimeImage.setVisible(true);
+                        break;
+                    case 2:
+                        slimeImage.setVisible(false);
+                        golemImage.setVisible(true);
+                        break;
+                    case 3:
+                        golemImage.setVisible(false);
+                        goblinImage.setVisible(true);
+                        break;
+                    case 4:
+                        goblinImage.setVisible(false);
+                        dragonImage.setVisible(true);
+                        break;
+                    case 5:
+                        dragonImage.setVisible(false);
+                        demonImage.setVisible(true);
+                        break;
+                }
                 displayprintln("C'est le debut de la manche numero : " + manche + " et vous allez affronter ");
                 if (enemies.size() != 1) {
                     for (Ennemy e : enemies) {
-                        display(e.getName() + ", ");
+                        display(e.getName() + " ; ");
                     }
                     displayprintln("");
                 } else {
@@ -120,15 +165,22 @@ public class MainController {
                 Random random = new Random();
                 int int_random = random.nextInt(2);
                 if (int_random == 1) {
+                    etatLabel.setText("Défense!");
                     etat = 2;
                 } else {
                     etat = 3;
+                    etatLabel.setText("Attaque!");
                     System.out.println("\n" + "C'est au tour des heros d'attaquer");
                 }
                 break;
             case 2:
                 displayprintln(" ");
                 if (enemies.size() == 0) {
+                    slimeImage.setVisible(false);
+                    golemImage.setVisible(false);
+                    goblinImage.setVisible(false);
+                    dragonImage.setVisible(false);
+                    dragonImage.setVisible(false);
                     enemiesList.remove(0);
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
@@ -140,6 +192,8 @@ public class MainController {
                         break;
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
+                    etatLabel.setText("Récompense");
+                    treasureImage.setVisible(true);
                     etat=9;
                     break;
                 }
@@ -159,9 +213,15 @@ public class MainController {
                 Game.finProtection(heros);
                 etat = 3;
                 System.out.println("\n" + "C'est au tour des heros d'attaquer");
+                etatLabel.setText("Attaque!");
                 break;
             case 3:
                 if (enemies.size() == 0) {
+                    slimeImage.setVisible(false);
+                    golemImage.setVisible(false);
+                    goblinImage.setVisible(false);
+                    dragonImage.setVisible(false);
+                    dragonImage.setVisible(false);
                     enemiesList.remove(0);
                     idHero = 0;
                     if (enemiesList.size() == 0 ){
@@ -172,14 +232,38 @@ public class MainController {
                         break;
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
+                    etatLabel.setText("Récompense");
+                    treasureImage.setVisible(true);
                     etat=9;
                     break;
                 }
                 Combattant goodOne = heros.get(idHero);
+                if(goodOne instanceof Warrior){
+                    warriorImage.setVisible(true);
+                    mageImage.setVisible(false);
+                    hunterImage.setVisible(false);
+                    healerImage.setVisible(false);
+                }else if(goodOne instanceof Hunter){
+                    hunterImage.setVisible(true);
+                    healerImage.setVisible(false);
+                    mageImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                }else if(goodOne instanceof Mage){
+                    mageImage.setVisible(true);
+                    hunterImage.setVisible(false);
+                    healerImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                }else if(goodOne instanceof Healer){
+                    healerImage.setVisible(true);
+                    mageImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                    hunterImage.setVisible(false);
+                }
                 System.out.println(" Que va faire " + goodOne.getName() + "?");
                 goodOne.sayAction();
                 displayprintln("");
                 etat = 4;
+                etatLabel.setText("Valider");
                 break;
             case 4:
                 goodOne = heros.get(idHero);
@@ -195,6 +279,7 @@ public class MainController {
                             compteurId++;
                         }
                         displayprintln("");
+                        etatLabel.setText("Attaquer!");
                         etat = 5;
                         break;
                     case 2:
@@ -206,6 +291,7 @@ public class MainController {
                                 compteurid++;
                             }
                             displayprintln("");
+                            etatLabel.setText("Soigner");
                         } else {
                             compteurId = 1;
                             System.out.println("Qui souhaitez-vous attaquer ?");
@@ -214,6 +300,7 @@ public class MainController {
                                 compteurId++;
                             }
                             displayprintln("");
+                            etatLabel.setText("Attaquer!");
                         }
                         etat = 6;
                         break;
@@ -253,15 +340,19 @@ public class MainController {
                     System.out.println("\n" + "Les Heros ont vaincu " + ennemy.getName() + " !");
                 }
                 if (enemies.size() == 0) {
+                    etatLabel.setText("Valider");
                     etat=3;
                     break;
                 }
                 Game.displayStatus(heros, enemies);
                 if (idHero == (heros.size() - 1)) {
                     idHero = 0;
+
+                    etatLabel.setText("Défense");
                     etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
                 } else {
                     idHero++;
+                    etatLabel.setText("Valider");
                     etat = 3;
                 }
                 break;
@@ -282,14 +373,17 @@ public class MainController {
                     }
                 }
                 if (enemies.size() == 0) {
+                    etatLabel.setText("Valider");
                     etat=3;
                     break;
                 }
                 Game.displayStatus(heros, enemies);
                 if (idHero == (heros.size() - 1)) {
                     idHero = 0;
+                    etatLabel.setText("Défense");
                     etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
                 } else {
+                    etatLabel.setText("Valider");
                     idHero++;
                     etat = 3;
                 }
@@ -300,6 +394,7 @@ public class MainController {
                 System.out.println("Joueur : " + choixObjet + "\n");
                 switch (choixObjet) {
                     case 0:
+                        etatLabel.setText("Valider");
                         etat=3;
                         break;
                     case 1:
@@ -312,10 +407,12 @@ public class MainController {
                                 compteurid++;
                             }
                             typeConsommable=1;
+                            etatLabel.setText("Valider");
                             etat=8;
                         } else {
                             System.out.println("Vous n'avez plus de Nuka-Cola");
                             displayprintln(" ");
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -330,10 +427,12 @@ public class MainController {
                                 compteurid++;
                             }
                             typeConsommable=2;
+                            etatLabel.setText("Valider");
                             etat=8;
                         } else {
                             System.out.println("Vous n'avez plus de Bento");
                             displayprintln(" ");
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -348,10 +447,11 @@ public class MainController {
                                 compteurid++;
                             }
                             typeConsommable=3;
+                            etatLabel.setText("Valider");
                             etat=8;
                         } else {
                             System.out.println("Vous n'avez plus de Ragout");
-
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -372,6 +472,7 @@ public class MainController {
                             if (ciblePotion.size() == 0 ) {
                                 System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
+                                etatLabel.setText("Valider");
                                 etat=3;
                                 break;
                             }
@@ -381,6 +482,7 @@ public class MainController {
                         } else{
                             System.out.println("Vous n'avez plus de MiniPotion");
                             displayprintln(" ");
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -400,6 +502,7 @@ public class MainController {
                             if (ciblePotion.size() == 0 ) {
                                 System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
+                                etatLabel.setText("Valider");
                                 etat=3;
                                 break;
                             }
@@ -409,6 +512,7 @@ public class MainController {
                         } else{
                             System.out.println("Vous n'avez plus de Potion");
                             displayprintln(" ");
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -429,6 +533,7 @@ public class MainController {
                             if (ciblePotion.size() == 0 ) {
                                 System.out.println("Aucun hero ne peut recevoir de potion !");
                                 displayprintln("");
+                                etatLabel.setText("Valider");
                                 etat=3;
                                 break;
                             }
@@ -438,6 +543,7 @@ public class MainController {
                         } else{
                             System.out.println("Vous n'avez plus de MaxiPotion");
                             displayprintln(" ");
+                            etatLabel.setText("Valider");
                             etat = 3;
                             break;
                         }
@@ -456,6 +562,7 @@ public class MainController {
                         food.useNukaCola(heros.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
+                            etatLabel.setText("Défense");
                             etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
@@ -467,7 +574,8 @@ public class MainController {
                         food.useBento(heros.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
-                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                            etat = 2;
+                            etatLabel.setText("Défense");                                           //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
                             etat = 3;
@@ -477,7 +585,8 @@ public class MainController {
                         food.useRagout(heros.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
-                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                            etat = 2;
+                            etatLabel.setText("Défense");                                         //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
                             etat = 3;
@@ -487,7 +596,8 @@ public class MainController {
                         potion.useMiniPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
-                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                            etat = 2;
+                            etatLabel.setText("Défense");                                          //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
                             etat = 3;
@@ -497,7 +607,8 @@ public class MainController {
                         potion.usePotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
-                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                            etat = 2;
+                            etatLabel.setText("Défense");                                             //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
                             etat = 3;
@@ -507,7 +618,8 @@ public class MainController {
                         potion.useMaxiPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
                         if (idHero == (heros.size() - 1)) {
                             idHero = 0;
-                            etat = 2;                                                 //VERIFICATION DERNIER JOUEUR A JOUER
+                            etat = 2;
+                            etatLabel.setText("Défense");                                            //VERIFICATION DERNIER JOUEUR A JOUER
                         } else {
                             idHero++;
                             etat = 3;
@@ -594,12 +706,34 @@ public class MainController {
                     System.out.println(compteurid + "- " + ally.getName() + " : " + ally.getHealthPoint() + " PV  " + ally.getDegat() + " ATK" );
                     compteurid++;
                 }
+                etatLabel.setText("Valider");
                 etat=10;
                 break;
             case 10:
                 int choixCibleWeapons = Integer.parseInt(textField.getText());
                 System.out.println("Joueur : " + choixCibleWeapons +"\n");
                 cibleWeapons = heros.get(choixCibleWeapons-1);
+                if(cibleWeapons instanceof Warrior){
+                    warriorImage.setVisible(true);
+                    mageImage.setVisible(false);
+                    hunterImage.setVisible(false);
+                    healerImage.setVisible(false);
+                }else if(cibleWeapons instanceof Hunter){
+                    hunterImage.setVisible(true);
+                    healerImage.setVisible(false);
+                    mageImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                }else if(cibleWeapons instanceof Mage){
+                    mageImage.setVisible(true);
+                    hunterImage.setVisible(false);
+                    healerImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                }else if(cibleWeapons instanceof Healer){
+                    healerImage.setVisible(true);
+                    mageImage.setVisible(false);
+                    warriorImage.setVisible(false);
+                    hunterImage.setVisible(false);
+                }
                 randomObjet = new Random();
                 if(cibleWeapons instanceof Warrior){
                     String weaponName;
@@ -628,6 +762,7 @@ public class MainController {
                             "Mais vous possedez deja " + ((Warrior) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Warrior) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
+                    etatLabel.setText("Valider");
                     break;
 
                 } else if (cibleWeapons instanceof Hunter) {
@@ -657,6 +792,7 @@ public class MainController {
                             "Mais vous possedez deja " + ((Hunter) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Hunter) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
+                    etatLabel.setText("Valider");
                     break;
 
                 }else if (cibleWeapons instanceof Mage) {
@@ -686,6 +822,7 @@ public class MainController {
                             "Mais vous possedez deja " + ((Mage) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Mage) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
+                    etatLabel.setText("Valider");
                     break;
 
                 }else if (cibleWeapons instanceof Healer) {
@@ -715,9 +852,11 @@ public class MainController {
                             "Mais vous possedez deja " + ((Healer) cibleWeapons).currentWeaponList.get(0).getName() + " (" +  ((Healer) cibleWeapons).currentWeaponList.get(0).getDamagePoints() + " ATK )\n" +
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
+                    etatLabel.setText("Valider");
                     break;
                 }
                 etat=1;
+                etatLabel.setText("Continuer");
                 break;
             case 11:
                 String choixChangementWeapon = textField.getText();
@@ -727,29 +866,39 @@ public class MainController {
                         ((Warrior) cibleWeapons).take(weapons);
                         System.out.println(" ");
                         etat=1;
+                        treasureImage.setVisible(false);
+                        etatLabel.setText("Continuer");
                         break;
                     }else if(cibleWeapons instanceof Hunter){
                         ((Hunter)cibleWeapons).currentWeaponList.remove(0);
                         ((Hunter) cibleWeapons).take(weapons);
                         System.out.println(" ");
                         etat=1;
+                        treasureImage.setVisible(false);
+                        etatLabel.setText("Continuer");
                         break;
                     }else if(cibleWeapons instanceof Mage){
                         ((Mage)cibleWeapons).currentWeaponList.remove(0);
                         ((Mage) cibleWeapons).take(weapons);
                         System.out.println(" ");
                         etat=1;
+                        treasureImage.setVisible(false);
+                        etatLabel.setText("Continuer");
                         break;
                     }else if(cibleWeapons instanceof Healer){
                         ((Healer)cibleWeapons).currentWeaponList.remove(0);
                         ((Healer) cibleWeapons).take(weapons);
                         System.out.println(" ");
                         etat=1;
+                        treasureImage.setVisible(false);
+                        etatLabel.setText("Continuer");
                         break;
                     }
                 }else{
                     System.out.println("Vous laissez l'arme sur place et partez vers la suite de votre aventure...\n");
                     etat=1;
+                    treasureImage.setVisible(false);
+                    etatLabel.setText("Continuer");
                     break;
                 }
 

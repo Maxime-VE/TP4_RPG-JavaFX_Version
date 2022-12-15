@@ -814,7 +814,7 @@ public class Game {
             if (c.isProtected){
                 protege++;
                 c.isProtected = false;
-                System.out.println(c.getName() + " n'est plus protégé(e) ");
+                System.out.println(c.getName() + " n'est plus protege(e) ");
             }
         }if (protege == 0) {
             return;
