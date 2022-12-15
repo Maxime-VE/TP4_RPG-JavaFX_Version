@@ -3,16 +3,21 @@ package com.example.tp4_rpg_javafx_version;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class HelloApplication extends Application {
 
     public static Stage currentStage;
 
+
     @Override
     public void start(Stage stage) throws IOException {
+        playSound();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         currentStage = stage;
 
@@ -25,6 +30,16 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static MediaPlayer mediaPlayer;
+    public static int sound=0;
+    public void playSound(){
+        String s = "src/main/resources/com/example/tp4_rpg_javafx_version/music/mainAmbiance.mp3";
+        Media media = new Media(Paths.get(s).toUri().toString());
+        mediaPlayer= new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 
 }

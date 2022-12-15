@@ -33,5 +33,15 @@
             <Font name="Copperplate Gothic Bold" size="25.0" />
          </font>
       </Label>
+      <ImageView fx:id="offButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="12.0" onMouseClicked="#onSoundButtonClick" visible="false">
+         <image>
+            <Image url="@image/soundOff.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="onButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="14.0" onMouseClicked="#onSoundButtonClick">
+         <image>
+            <Image url="@image/soundOn.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

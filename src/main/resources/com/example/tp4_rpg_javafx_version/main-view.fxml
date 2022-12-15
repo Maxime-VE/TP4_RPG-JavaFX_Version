@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.MainController">
+<AnchorPane onMouseMoved="#soundButtonVisibility" prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/MainStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.MainController">
    <children>
       <TextArea fx:id="console" editable="false" layoutX="229.0" prefHeight="604.0" prefWidth="742.0" styleClass="eventWindow" text="Veuillez appuyer sur le bouton &quot;Démarrage&quot; pour commencer la partie.&#10;">
          <font>
@@ -26,5 +26,15 @@
             <Font name="Copperplate Gothic Bold" size="14.0" />
          </font>
       </Label>
+      <ImageView fx:id="offButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="12.0" onMouseClicked="#onSoundButtonClick" visible="false">
+         <image>
+            <Image url="@image/soundOff.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="onButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="14.0" onMouseClicked="#onSoundButtonClick" visible="false">
+         <image>
+            <Image url="@image/soundOn.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

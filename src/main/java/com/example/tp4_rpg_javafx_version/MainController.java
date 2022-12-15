@@ -15,12 +15,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import static com.example.tp4_rpg_javafx_version.CharSelectionController.heros;
+import static com.example.tp4_rpg_javafx_version.HelloApplication.sound;
 
 
 public class MainController {
+    @FXML
+    private ImageView offButton;
+
+    @FXML
+    private ImageView onButton;
 
     @FXML
     private TextArea console;
@@ -497,7 +504,7 @@ public class MainController {
                         }
                         break;
                 }break;
-            case 9: //TODO verifier les problèmes de freeze dans la page.
+            case 9:
                 System.out.println(" ");
                 Random randomObjet = new Random();
                 int [] heroPresent = {0,0,0,0};
@@ -737,6 +744,32 @@ public class MainController {
                 }
 
 
+        }
+    }
+
+    @FXML
+    void onSoundButtonClick(MouseEvent event) {
+        if(sound==0){
+            HelloApplication.mediaPlayer.pause();
+            onButton.setVisible(false);
+            offButton.setVisible(true);
+            sound=1;
+        }else{
+            HelloApplication.mediaPlayer.play();
+            onButton.setVisible(true);
+            offButton.setVisible(false);
+            sound=0;
+        }
+    }
+
+    @FXML
+    void soundButtonVisibility(MouseEvent event) {
+        if(sound==0){
+            onButton.setVisible(true);
+            offButton.setVisible(false);
+        }else{
+            onButton.setVisible(false);
+            offButton.setVisible(true);
         }
     }
 }

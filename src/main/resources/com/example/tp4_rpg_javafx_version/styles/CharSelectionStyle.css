@@ -22,3 +22,7 @@
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
+
+.soundButton{
+    -fx-background-color: #FFFFFF;
+}

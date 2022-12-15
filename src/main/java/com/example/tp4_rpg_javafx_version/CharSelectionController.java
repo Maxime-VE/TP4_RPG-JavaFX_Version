@@ -1,11 +1,9 @@
 package com.example.tp4_rpg_javafx_version;
 
 import com.example.tp4_rpg_javafx_version.isep.rpg.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -14,9 +12,15 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
+import static com.example.tp4_rpg_javafx_version.HelloApplication.sound;
 
 public class CharSelectionController {
+    @FXML
+    private ImageView offButton;
+
+    @FXML
+    private ImageView onButton;
     @FXML
     private ImageView imageArcher;
 
@@ -256,6 +260,32 @@ public class CharSelectionController {
         HelloApplication.currentStage.setScene(scene);
         HelloApplication.currentStage.show();
         //Game.main();
+    }
+
+    @FXML
+    void onSoundButtonClick(MouseEvent event) {
+        if(sound==0){
+            HelloApplication.mediaPlayer.pause();
+            onButton.setVisible(false);
+            offButton.setVisible(true);
+            sound=1;
+        }else{
+            HelloApplication.mediaPlayer.play();
+            onButton.setVisible(true);
+            offButton.setVisible(false);
+            sound=0;
+        }
+    }
+
+    @FXML
+    void soundButtonVisibility(MouseEvent event) {
+        if(sound==0){
+            onButton.setVisible(true);
+            offButton.setVisible(false);
+        }else{
+            onButton.setVisible(false);
+            offButton.setVisible(true);
+        }
     }
 
 }

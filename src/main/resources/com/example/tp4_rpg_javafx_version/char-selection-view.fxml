@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/CharSelectionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.CharSelectionController">
+<AnchorPane onMouseMoved="#soundButtonVisibility" prefHeight="675.0" prefWidth="1200.0" stylesheets="@styles/CharSelectionStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tp4_rpg_javafx_version.CharSelectionController">
    <children>
       <ImageView fitHeight="187.0" fitWidth="119.0" layoutX="189.0" layoutY="163.0" onMouseClicked="#handleMouseClicked" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited">
          <image>
@@ -164,5 +164,20 @@
             <Font name="Blackadder ITC" size="32.0" />
          </font>
       </Label>
+      <ImageView fitHeight="117.0" fitWidth="42.0" layoutX="22.0" layoutY="12.0" onMouseClicked="#onSoundButtonClick" preserveRatio="true">
+         <image>
+            <Image url="@image/soundBG.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="onButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="14.0" onMouseClicked="#onSoundButtonClick" styleClass="soundButton" visible="false">
+         <image>
+            <Image url="@image/soundOn.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="offButton" fitHeight="37.0" fitWidth="35.0" layoutX="26.0" layoutY="14.0" onMouseClicked="#onSoundButtonClick" visible="false">
+         <image>
+            <Image url="@image/soundOff.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
