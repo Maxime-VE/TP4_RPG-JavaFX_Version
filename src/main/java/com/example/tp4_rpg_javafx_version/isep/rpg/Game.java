@@ -438,7 +438,7 @@ public class Game {
         }
     }
 
-    private static void createWeapon(List<Combattant> h,  String[] [] [] listWeapon, String className){ //TODO Baisser les stats d'armes
+    private static void createWeapon(List<Combattant> h,  String[] [] [] listWeapon, String className){
         Random randomObjet = new Random();
         int typeHero;
         if (className.equals("Warrior") ){

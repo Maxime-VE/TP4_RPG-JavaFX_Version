@@ -140,7 +140,6 @@ public class MainController {
                         break;
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
-                    //TODO ramener vers les récompenses
                     etat=9;
                     break;
                 }
@@ -174,7 +173,6 @@ public class MainController {
                     }
                     System.out.println("Vous tombez sur un tresor cache proche du lieu de votre precedent combat ");
                     etat=9;
-                    //TODO ramener vers les récompenses
                     break;
                 }
                 Combattant goodOne = heros.get(idHero);
