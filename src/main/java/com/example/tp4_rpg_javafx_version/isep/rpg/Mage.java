@@ -131,7 +131,7 @@ public class Mage extends SpellCaster{
     public ArrayList<Weapon> currentWeaponList = new ArrayList<>();
     public int degatTotal = degat;
     private Weapon weapon;
-    int coutSort = 25;
+    public int coutSort = 25;
     public int bonusVie = 0;
     public int degatSpecial = 0;
 }

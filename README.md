@@ -5,8 +5,7 @@
 ### A faire (Interface graphique) :
 
 
-1) Upgrade fin de manche
-3) Retirer tous les accents du txt
+1) Upgrade fin de manche (Edit: est implémenté mais non fonctionnelle)
 
 ### Fait:
 1) Jeu complet disponible en console
@@ -20,3 +19,4 @@
 9) Ecran redirection console
 10) Ajout d'un fond sonore
 11) Ecran de victoire
+12) Retirer tous les accents du txt

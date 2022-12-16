@@ -81,6 +81,7 @@ public class MainController {
     int typeConsommable;
     Combattant cibleWeapons;
     Weapon weapons;
+    Combattant cibleUpgrade;
 
     public static void displayprintln(String s) {
         System.setOut(ps);
@@ -116,9 +117,6 @@ public class MainController {
                                 //   9=Récompenses Automatiques, 10=]
     @FXML
     void onActionClick(MouseEvent event) throws IOException {
-//        if(enemiesList.size() == 0){
-//            On part sur la fenêtre victoire
-//        }
         switch(etat) {
             case 0:
                 int nombreEnnemy = (int) ((heros.size() / 2) + 1);
@@ -860,6 +858,7 @@ public class MainController {
                     break;
                 }
                 etat=1;
+                idHero=0;
                 etatLabel.setText("Continuer");
                 break;
             case 11:
@@ -869,7 +868,8 @@ public class MainController {
                         ((Warrior)cibleWeapons).currentWeaponList.remove(0);
                         ((Warrior) cibleWeapons).take(weapons);
                         System.out.println(" ");
-                        etat=1;
+                        idHero=0;
+                        etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
                         break;
@@ -877,7 +877,8 @@ public class MainController {
                         ((Hunter)cibleWeapons).currentWeaponList.remove(0);
                         ((Hunter) cibleWeapons).take(weapons);
                         System.out.println(" ");
-                        etat=1;
+                        idHero=0;
+                        etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
                         break;
@@ -885,6 +886,7 @@ public class MainController {
                         ((Mage)cibleWeapons).currentWeaponList.remove(0);
                         ((Mage) cibleWeapons).take(weapons);
                         System.out.println(" ");
+                        idHero=0;
                         etat=1;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
@@ -893,20 +895,152 @@ public class MainController {
                         ((Healer)cibleWeapons).currentWeaponList.remove(0);
                         ((Healer) cibleWeapons).take(weapons);
                         System.out.println(" ");
-                        etat=1;
+                        idHero=0;
+                        etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
                         break;
                     }
                 }else{
                     System.out.println("Vous laissez l'arme sur place et partez vers la suite de votre aventure...\n");
-                    etat=1;
+                    etat=12;
+                    idHero=0;
                     treasureImage.setVisible(false);
                     etatLabel.setText("Continuer");
                     break;
                 }
 
+            case 12:
+                cibleUpgrade = heros.get(idHero);
+                if (cibleUpgrade instanceof Warrior) {
+                    System.out.println("""
+                1- Amelioration des degats\s
+                2- Amelioration de l'efficacite de l'attaque speciale\s
+                3- Amelioration de la defense\s
+                4- Amelioration de l'efficacite des objets""");
+                    etat=13;
+                    break;
+                }else if(cibleUpgrade instanceof Mage){
+                    System.out.println("""
+                1- Amelioration des degats\s
+                2- Amelioration de l'efficacite de l'attaque speciale\s
+                3- Amelioration de la defense\s
+                4- Amelioration de l'efficacite des objets\s
+                5- Reduction du coup en mana de l'attaque speciale""");
+                    etat=13;
+                    break;
+                }else if(cibleUpgrade instanceof Hunter){
+                    System.out.println("""
+                1- Amelioration des degats\s
+                2- Amelioration de l'efficacite de l'attaque speciale\s
+                3- Amelioration de la defense\s
+                4- Amelioration de l'efficacite des objets""");
+                    etat=13;
+                    break;
+                }else if(cibleUpgrade instanceof Healer){
+                    System.out.println("""
+                1- Amelioration des degats\s
+                2- Amelioration de l'efficacite de la capacite speciale\s
+                3- Amelioration de la defense\s
+                4- Amelioration de l'efficacite des objets\s
+                5- Reduction du coup en mana de la capacite speciale""");
+                    etat=13;
+                    break;
+                }
+            case 13:
+                int choixUpgrade = Integer.parseInt(textField.getText());
+                switch(choixUpgrade){
+                    case 1:
+                        cibleUpgrade.setDegat(3);
+                        if(cibleUpgrade instanceof Warrior){
+                            cibleUpgrade.degatTotal=cibleUpgrade.getDegat() + ((Warrior) cibleUpgrade).currentWeaponList.get(0).getDamagePoints();
+                        }else if(cibleUpgrade instanceof Mage){
+                            cibleUpgrade.degatTotal=cibleUpgrade.getDegat() + ((Mage) cibleUpgrade).currentWeaponList.get(0).getDamagePoints();
+                        }else if(cibleUpgrade instanceof Hunter){
+                            cibleUpgrade.degatTotal=cibleUpgrade.getDegat() + ((Hunter) cibleUpgrade).currentWeaponList.get(0).getDamagePoints();
+                        }else if(cibleUpgrade instanceof Healer){
+                            cibleUpgrade.degatTotal=cibleUpgrade.getDegat() + ((Healer) cibleUpgrade).currentWeaponList.get(0).getDamagePoints();
+                        }
+                        System.out.println(cibleUpgrade.getName() + " se sent plus fort !\n");
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 1;
+                            etatLabel.setText("Continuer");                                            //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 12;
+                        }
+                        break;
+                    case 2:
+                        if(cibleUpgrade instanceof Warrior){
+                            ((Warrior) cibleUpgrade).degatSpecial +=4;
+                        }else if(cibleUpgrade instanceof Mage){
+                            ((Mage) cibleUpgrade).degatSpecial +=3;
+                        }else if(cibleUpgrade instanceof Hunter){
+                            ((Hunter) cibleUpgrade).degatSpecial +=3;
+                        }else if(cibleUpgrade instanceof Healer){
+                            ((Healer) cibleUpgrade).degatSpecial +=3;
+                        }
+                        System.out.println(cibleUpgrade.getName() + " maitrise mieux sa capacite speciale !\n");
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 1;
+                            etatLabel.setText("Continuer");                                            //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 12;
+                        }
+                        break;
+                    case 3:
+                        cibleUpgrade.addResistance(2);
+                        System.out.println(cibleUpgrade.getName() + " est plus resistant !\n");
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 1;
+                            etatLabel.setText("Continuer");                                            //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 12;
+                        }
+                        break;
+                    case 4:
+                        if(cibleUpgrade instanceof Warrior){
+                            ((Warrior) cibleUpgrade).bonusVie +=3;
+                        }else if(cibleUpgrade instanceof Mage){
+                            ((Mage) cibleUpgrade).bonusVie +=3;
+                        }else if(cibleUpgrade instanceof Hunter){
+                            ((Hunter) cibleUpgrade).bonusVie +=3;
+                        }else if(cibleUpgrade instanceof Healer){
+                            ((Healer) cibleUpgrade).bonusVie +=3;
+                        }
+                        System.out.println(cibleUpgrade.getName() + " est plus receptif aux objets !\n");
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 1;
+                            etatLabel.setText("Continuer");                                            //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 12;
+                        }
+                        break;
+                    case 5:
+                        if(cibleUpgrade instanceof Mage){
+                            ((Mage) cibleUpgrade).coutSort -= 2;
+                        }else if(cibleUpgrade instanceof Healer){
+                            ((Healer) cibleUpgrade).coutSoin -= 2;
+                        }
+                        System.out.println(cibleUpgrade.getName() + " nécessite moins de mana pour utiliser ses sorts !\n");
+                        if (idHero == (heros.size() - 1)) {
+                            idHero = 0;
+                            etat = 1;
+                            etatLabel.setText("Continuer");                                            //VERIFICATION DERNIER JOUEUR A JOUER
+                        } else {
+                            idHero++;
+                            etat = 12;
+                        }
+                        break;
 
+                }
         }
     }
 

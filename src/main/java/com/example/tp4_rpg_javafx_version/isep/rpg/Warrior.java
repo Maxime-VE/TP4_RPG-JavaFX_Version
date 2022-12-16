@@ -126,6 +126,6 @@ public class Warrior extends Hero{
     public ArrayList<Weapon> currentWeaponList = new ArrayList<>();
     public int degatTotal = degat;
     public int degatSpecial = 0;
-    private int bonusVie = 0;
+    public int bonusVie = 0;
     private Weapon weapon;
 }
