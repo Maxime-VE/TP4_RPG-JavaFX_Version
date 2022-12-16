@@ -14,7 +14,7 @@ on peut selectionner le support de la partie en cours (console/interface)
 + Le jeu disponible sur interface graphique ne possède pas de Safe Scanner. Veuillez à bien rentrer les informations
 demandées.
 + Le jeu comporte des effets sonores. Veuillez a bien activer le son de votre machine
-en prenant le soin de ne pas le mettre trop fort.
+en prenant le soin de faire attention au puissant volume.
 
 ### Merci d'avoir lu et amusez-vous bien !
 
