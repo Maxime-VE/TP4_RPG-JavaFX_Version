@@ -266,7 +266,6 @@ public class CharSelectionController {
         Scene scene = new Scene(fxmlLoader.load(), 1200, 675);
         HelloApplication.currentStage.setScene(scene);
         HelloApplication.currentStage.show();
-        //Game.main();
     }
 
     @FXML

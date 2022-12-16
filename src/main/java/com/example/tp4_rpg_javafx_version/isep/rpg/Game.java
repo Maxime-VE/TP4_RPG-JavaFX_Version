@@ -66,7 +66,7 @@ public class Game {
                         3- Mage : Un maitre de sortileges offensifs, caracterise par ses puissantes attaques et sa faible defense.\s
                         4- Healer : Expert en sort de regeneration. Malgre son manque de point de vie, il possede une tres solide protection en mode défense et la capacité de soigner ses compagnons.""");
                 while (!scanner.hasNextInt()) {
-                    scanner.nextLine(); //clear the invalid input before prompting again
+                    scanner.nextLine(); //Safe Scanner
                     System.out.println("Veuillez selectionner le numero du hero souhaite :  ");
                 }
                 int type_Hero = scanner.nextInt();
@@ -124,19 +124,12 @@ public class Game {
         int nombreEnnemy = (int) ((heros.size() / 2) + 1);
         initialisationEnnemy(nombreEnnemy, enemiesList, manche1, manche2, manche3, manche4, manche5);
 
-
-        //##########################################################################################################
-        // MISE EN PLACE DES CONSOMMABLES
-        //##########################################################################################################
-
-
     }
         //##########################################################################################################
         // FIN INITIALISATION & DEBUT DE LA PARTIE
         //##########################################################################################################
-
     public static void game(){
-        Potion p = new Potion("Stock de potions", "plein");
+        Potion p = new Potion("Stock de potions", "plein"); // MISE EN PLACE DES CONSOMMABLES
         Food f = new Food("Stock de nourriture", "plein");
         if(HelloController.displayMode==0){
             startConsole();
@@ -169,28 +162,28 @@ public class Game {
             userDelay();
             boolean firstTurn = false;
 
-            //TIRAGE AU SORT DE L'EQUIPE QUI COMMENCE
+
             while(true) {
                 Combattant goodOne = heros.get(idHero);
                 if (!firstTurn) {
                     Random random = new Random();
-                    int int_random = random.nextInt(2);
+                    int int_random = random.nextInt(2);     //TIRAGE AU SORT DE L'EQUIPE QUI COMMENCE
                     if (int_random == 1) {
                         attaqueEnnemie(heros, enemies);
                         displayStatus(heros,enemies);
                     }
                     firstTurn = true;
                 }
-                attaqueAlliee(goodOne, enemies,idHero,p ,f);
-                //VERIFICATION MORT DU VILAIN
-                if (enemies.size() == 0) {
+                attaqueAlliee(goodOne, enemies,idHero,p ,f);    //ATTAQUE DES HEROS
+
+                if (enemies.size() == 0) {      //VERIFICATION MORT DU VILAIN
                     idHero = 0;
                     userDelay();
                     break;
                 }
                 //ATTAQUE ENNEMIE
                 userDelay();
-                attaqueEnnemie(heros, enemies);
+                attaqueEnnemie(heros, enemies); //ATTAQUE ENNEMIE
                 displayStatus(heros,enemies);
                 finProtection(heros);  // Annule la protection de tous les héros protégés de la manche
             }
@@ -200,8 +193,8 @@ public class Game {
             }
             System.out.println("Vous tombez sur un trésor caché proche du lieu de votre précédent combat ");
             userDelay();
-            recompenseFinDeManche(heros,manche,p,f,weaponList);
-            upgradeFinDeManche(heros);
+            recompenseFinDeManche(heros,manche,p,f,weaponList);     //RECOMPENSE ALEATOIRE D'ITEM
+            upgradeFinDeManche(heros);      //AMELIORATION DE STATISTIQUE (A CHOISIR PAR LE JOUEUR)
 
         }
         System.out.println("Félicitation jeune aventurier, tu as vaincu l'ensemble de tes ennemies et sauvé l'humanité ! \n" +
@@ -209,6 +202,7 @@ public class Game {
         System.exit(0);
     }
 
+    //CREATION DE L'ENSEMBLE DES ENNEMIS
     public static void initialisationEnnemy(int nombreEnnemy, ArrayList<ArrayList<Ennemy>> enemiesList, ArrayList<Ennemy> manche1, ArrayList<Ennemy> manche2, ArrayList<Ennemy> manche3, ArrayList<Ennemy> manche4, ArrayList<Ennemy> manche5 ) {
         String nomEnnemy;
         for (int i=0; i<nombreEnnemy ; i++) {
@@ -274,19 +268,21 @@ public class Game {
     }
 
 
-
+    //METHODE DE NOMMAGE DES ENNEMIS (PARMI UNE LISTE DEFINI EN FIN DE CODE)
     private static String nommageEnnemy(String [] list) {
         Random randomNomEnemy = new Random();
         int int_random = randomNomEnemy.nextInt(list.length);
         return list[int_random];
     }
 
+    //METHODE DE NOMMAGE DES ARMES (PARMI UNE LISTE DEFINI EN FIN DE CODE)
     public static String nommageWeapon(String[][] list, int i) {
         Random randomNomEnemy = new Random();
         int int_random = randomNomEnemy.nextInt(1, list[i].length);
         return list[i][int_random];
     }
 
+    //ACTION REALISEE LORS DU TOUR DES HEROS
     public static void attaqueAlliee(Combattant goodOne, ArrayList<Ennemy> enemies, int idHero, Potion p , Food f ) {
         System.out.println("C' est au tour des héros d'agir ");
         for (int compteurListeHero = 0; compteurListeHero < heros.size(); compteurListeHero++) {
@@ -308,6 +304,7 @@ public class Game {
             displayStatus(heros, enemies);
         }
     }
+    //ACTION REALISEE LORS DU TOUR DES ENNEMIS
     public static void attaqueEnnemie(List<Combattant> h, List<Ennemy> e) {
         System.out.println("C' est au tour des vilains d'attaquer ");
         userDelay();
@@ -341,6 +338,7 @@ public class Game {
     }
 
 
+    //AFFICHE LES STATISTIQUES DES HEROS ET ENNEMIS
     public static void displayStatus(List<Combattant> h, List<Ennemy> e) {
         ConsoleParser.displayMethod("\n" +
                 "#########################");
@@ -358,6 +356,7 @@ public class Game {
         ConsoleParser.displayMethod("#########################\n");
     }
 
+    //METHODE DE DISTRIBUTION DE RECOMPENSE DE MANIERE ALEATOIRE EN FIN DE MANCHE
     public static void recompenseFinDeManche(List<Combattant> h, int manche, Potion p, Food f, String[] [] [] list) {
         int [] heroPresent = {0,0,0,0};
         for (Combattant c : h){
@@ -438,6 +437,7 @@ public class Game {
         }
     }
 
+    //METHODE DE CREATION D'ARMES DE STATISTIQUE, RARETE ET NOMMINATION DIFFERENTE
     private static void createWeapon(List<Combattant> h,  String[] [] [] listWeapon, String className){
         Random randomObjet = new Random();
         int typeHero;
@@ -530,6 +530,7 @@ public class Game {
         }
     }
 
+    //METHODE PERMETTANT L'EVOLUTION DES STATISTIQUES EN FIN DE MANCHE
     public static void upgradeFinDeManche(List<Combattant> h){
         for (Combattant c : h){
             c.sayUpgrade();
@@ -542,7 +543,7 @@ public class Game {
         for (int compteurAction = 0 ; compteurAction < 1 ; compteurAction++) {
             c.sayAction();
             while (!scanAction.hasNextInt()) {
-                scanAction.nextLine(); //clear the invalid input before prompting again
+                scanAction.nextLine(); //Safe Scanner
                 System.out.println("Veuillez sélectionner le numéro de l'action souhaitée :  ");
             }
             int typeAction;
@@ -620,7 +621,7 @@ public class Game {
                                 "5- Potion : +" + potion.puissancePotion + "Mana (" + potion.compteurPotion +" en stock) \n" +
                                 "6- Maxi Potion : +" + potion.puissanceMaxiPotion + "Mana (" + potion.compteurMaxiPotion + " en stock)");
                         while (!scanObjet.hasNextInt()) {
-                            scanObjet.nextLine(); //clear the invalid input before prompting again
+                            scanObjet.nextLine(); //Safe Scanner
                             System.out.println("Veuillez sélectionner le numéro de l'objet souhaité :  ");
                         }
                         int typeObjet = scanObjet.nextInt();
@@ -798,6 +799,7 @@ public class Game {
         }
     }
 
+    //METHODE PERMETTANT D'ATTENDRE QUE LE JOUEUR FINISSE DE LIRE AVANT DE PASSER A LA SUITE
     private static void userDelay() {
         if(HelloController.displayMode==0){
             System.out.println("\n" +
@@ -808,6 +810,7 @@ public class Game {
 
     }
 
+    //METHODE ANNULANT L'EFFET DE L'ACTION "PROTECTION"
     public static void finProtection(List<Combattant> h) {
         int protege = 0;
         for (Combattant c: h) {
@@ -827,8 +830,6 @@ public class Game {
 //    #################################################################################################################
 //                                                  LISTE
 //    #################################################################################################################
-
-    //List<List<Weapon>> WeaponList = new ArrayList<List<Weapon>>();
 
     // NOMMAGE ARMES
     static String[] [] wWeapons = {{"Commun","Couteau","Lance","Epee","Machette","Dague","Hache"},
@@ -892,18 +893,5 @@ public class Game {
             "Sauba",
             "Rithzarg",
             "Emaran"};
-
-
-
-    /*
-    #################################################################################################################
-                                                    UTILS
-    #################################################################################################################
-    if (goodOne instanceof Hunter) {
-                        ((Hunter) goodOne).rechargeFleche(n);                   //Rajout de n flèche si le héro
-                                                                                // est un Hunter
-                    }
-    System.out.println("\033[0;31m" + "RED COLORED" + "\033[0m" + " NORMAL");   Changement de couleur du txt
-     */
 }
 //TODO Java = CamelCase

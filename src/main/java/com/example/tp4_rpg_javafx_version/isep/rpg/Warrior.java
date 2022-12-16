@@ -80,8 +80,6 @@ public class Warrior extends Hero{
         combattant.loose(attack);
     }
 
-    // Implémentation de la méthode abstraite "take" par le Warrior :
-    //   Le guerrier ne peut utiliser que les objets de type "Weapon"
     @Override
     public void take(Item item) {
         if (item instanceof Weapon) {

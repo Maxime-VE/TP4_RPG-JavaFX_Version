@@ -112,9 +112,10 @@ public class MainController {
 
     }
 
-    public int etat = 0;    //etat: [0=Démarrage, 1=Début nouvelle manche, 2=Attaque Ennemie, 3=Attaque Alliées,
+    public int etat = 0;        //etat: [0=Démarrage, 1=Début nouvelle manche, 2=Attaque Ennemie, 3=Attaque Alliées,
                                 //   4=Choix Action, 5=Attaque Normale, 6=Attaque Spe, 7=Accès Inventaire, 8=cibleConsommable
-                                //   9=Récompenses Automatiques, 10=]
+                                //   9=Récompenses Automatiques, 10=Création de la nouvelle arme, 11=Confirmation changement d'armes,
+                                //   12 = Choix amélioration statistique, 13= Affectation de l'amélioration]
     @FXML
     void onActionClick(MouseEvent event) throws IOException {
         switch(etat) {
