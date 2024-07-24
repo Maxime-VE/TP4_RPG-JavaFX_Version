@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 import com.example.tp4_rpg_javafx_version.isep.rpg.*;
 
 import javafx.application.Platform;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 import static com.example.tp4_rpg_javafx_version.CharSelectionController.heros;
@@ -59,10 +61,22 @@ public class MainController {
     private TextField textField;
     public static PrintStream ps ;
 
+    @FXML
     public void initialize() {
-        ps = new PrintStream(new Console(console)) ;
-    }
+        // Votre code existant
+        ps = new PrintStream(new Console(console));
 
+        // Ajouter un gestionnaire d'événements pour le TextField
+        textField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                try {
+                    onActionClick(null);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
 
     //VARIABLE INITIALES
     Potion potion = new Potion("Stock de potions", "plein");
@@ -124,6 +138,7 @@ public class MainController {
                 Game.initialisationEnnemy(nombreEnnemy, enemiesList, manche1, manche2, manche3, manche4, manche5);
                 displayprintln(" Debut de la partie ");
                 etat = 1;
+                textField.clear();
                 break;
             case 1:
                 enemies = enemiesList.get(0);
@@ -171,6 +186,7 @@ public class MainController {
                     etatLabel.setText("Attaque!");
                     System.out.println("\n" + "C'est au tour des heros d'attaquer");
                 }
+                textField.clear();
                 break;
             case 2:
                 displayprintln(" ");
@@ -267,6 +283,7 @@ public class MainController {
                 displayprintln("");
                 etat = 4;
                 etatLabel.setText("Valider");
+                textField.clear();
                 break;
             case 4:
                 goodOne = heros.get(idHero);
@@ -284,6 +301,7 @@ public class MainController {
                         displayprintln("");
                         etatLabel.setText("Attaquer!");
                         etat = 5;
+                        textField.clear();
                         break;
                     case 2:
                         if (goodOne instanceof Healer) {
@@ -306,6 +324,7 @@ public class MainController {
                             etatLabel.setText("Attaquer!");
                         }
                         etat = 6;
+                        textField.clear();
                         break;
                     case 3:
                         goodOne.protection();
@@ -316,6 +335,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
                     case 4:
                         System.out.println("Quel objet souhaitez-vous consommer ? \n" +
@@ -329,8 +349,10 @@ public class MainController {
                                 "5- Potion : +" + potion.puissancePotion + "Mana (" + potion.compteurPotion + " en stock) \n" +
                                 "6- Maxi Potion : +" + potion.puissanceMaxiPotion + "Mana (" + potion.compteurMaxiPotion + " en stock)");
                         etat = 7;
+                        textField.clear();
                         break;
                 }
+                textField.clear();
                 break;
             case 5:
                 goodOne = heros.get(idHero);
@@ -345,6 +367,7 @@ public class MainController {
                 if (enemies.size() == 0) {
                     etatLabel.setText("Valider");
                     etat=3;
+                    textField.clear();
                     break;
                 }
                 Game.displayStatus(heros, enemies);
@@ -358,6 +381,7 @@ public class MainController {
                     etatLabel.setText("Valider");
                     etat = 3;
                 }
+                textField.clear();
                 break;
 
             case 6:
@@ -378,6 +402,7 @@ public class MainController {
                 if (enemies.size() == 0) {
                     etatLabel.setText("Valider");
                     etat=3;
+                    textField.clear();
                     break;
                 }
                 Game.displayStatus(heros, enemies);
@@ -390,6 +415,7 @@ public class MainController {
                     idHero++;
                     etat = 3;
                 }
+                textField.clear();
                 break;
             case 7:
                 goodOne = heros.get(idHero);
@@ -399,6 +425,7 @@ public class MainController {
                     case 0:
                         etatLabel.setText("Valider");
                         etat=3;
+                        textField.clear();
                         break;
                     case 1:
                         if (food.compteurNukaCola > 0) {
@@ -417,8 +444,10 @@ public class MainController {
                             displayprintln(" ");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
+                        textField.clear();
                         break;
                     case 2:
                         if (food.compteurBento > 0) {
@@ -437,8 +466,10 @@ public class MainController {
                             displayprintln(" ");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
+                        textField.clear();
                         break;
                     case 3:
                         if (food.compteurRagout > 0) {
@@ -456,8 +487,10 @@ public class MainController {
                             System.out.println("Vous n'avez plus de Ragout");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
+                        textField.clear();
                         break;
                     case 4:
                         if(potion.compteurMiniPotion > 0) {
@@ -477,16 +510,19 @@ public class MainController {
                                 displayprintln("");
                                 etatLabel.setText("Valider");
                                 etat=3;
+                                textField.clear();
                                 break;
                             }
                             typeConsommable=4;
                             etat=8;
+                            textField.clear();
                             break;
                         } else{
                             System.out.println("Vous n'avez plus de MiniPotion");
                             displayprintln(" ");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
                     case 5:
@@ -507,16 +543,19 @@ public class MainController {
                                 displayprintln("");
                                 etatLabel.setText("Valider");
                                 etat=3;
+                                textField.clear();
                                 break;
                             }
                             typeConsommable=5;
                             etat=8;
+                            textField.clear();
                             break;
                         } else{
                             System.out.println("Vous n'avez plus de Potion");
                             displayprintln(" ");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
 
@@ -538,20 +577,25 @@ public class MainController {
                                 displayprintln("");
                                 etatLabel.setText("Valider");
                                 etat=3;
+                                textField.clear();
                                 break;
                             }
                             typeConsommable=6;
                             etat=8;
+                            textField.clear();
                             break;
                         } else{
                             System.out.println("Vous n'avez plus de MaxiPotion");
                             displayprintln(" ");
                             etatLabel.setText("Valider");
                             etat = 3;
+                            textField.clear();
                             break;
                         }
 
-                }break;
+                }
+                textField.clear();
+                break;
             case 8:
                 int choixCibleConsumable = Integer.parseInt(textField.getText());
                 System.out.println("Joueur : " + choixCibleConsumable + "\n");
@@ -571,6 +615,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
 
                     case 2:
@@ -583,6 +628,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
                     case 3:
                         food.useRagout(heros.get((choixCibleConsumable-1)));
@@ -594,6 +640,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
                     case 4:
                         potion.useMiniPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
@@ -605,6 +652,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
                     case 5:
                         potion.usePotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
@@ -616,6 +664,7 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
                     case 6:
                         potion.useMaxiPotion((SpellCaster) ciblePotion.get((choixCibleConsumable-1)));
@@ -627,8 +676,11 @@ public class MainController {
                             idHero++;
                             etat = 3;
                         }
+                        textField.clear();
                         break;
-                }break;
+                }
+                textField.clear();
+                break;
             case 9:
                 System.out.println(" ");
                 Random randomObjet = new Random();
@@ -711,6 +763,7 @@ public class MainController {
                 }
                 etatLabel.setText("Valider");
                 etat=10;
+                textField.clear();
                 break;
             case 10:
                 int choixCibleWeapons = Integer.parseInt(textField.getText());
@@ -766,6 +819,7 @@ public class MainController {
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
                     etatLabel.setText("Valider");
+                    textField.clear();
                     break;
 
                 } else if (cibleWeapons instanceof Hunter) {
@@ -796,6 +850,7 @@ public class MainController {
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
                     etatLabel.setText("Valider");
+                    textField.clear();
                     break;
 
                 }else if (cibleWeapons instanceof Mage) {
@@ -826,6 +881,7 @@ public class MainController {
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
                     etatLabel.setText("Valider");
+                    textField.clear();
                     break;
 
                 }else if (cibleWeapons instanceof Healer) {
@@ -856,11 +912,13 @@ public class MainController {
                             "Souhaitez-vous changer d'arme ? [y/n]");
                     etat=11;
                     etatLabel.setText("Valider");
+                    textField.clear();
                     break;
                 }
                 etat=1;
                 idHero=0;
                 etatLabel.setText("Continuer");
+                textField.clear();
                 break;
             case 11:
                 String choixChangementWeapon = textField.getText();
@@ -873,6 +931,7 @@ public class MainController {
                         etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
+                        textField.clear();
                         break;
                     }else if(cibleWeapons instanceof Hunter){
                         ((Hunter)cibleWeapons).currentWeaponList.remove(0);
@@ -882,6 +941,7 @@ public class MainController {
                         etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
+                        textField.clear();
                         break;
                     }else if(cibleWeapons instanceof Mage){
                         ((Mage)cibleWeapons).currentWeaponList.remove(0);
@@ -891,6 +951,7 @@ public class MainController {
                         etat=1;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
+                        textField.clear();
                         break;
                     }else if(cibleWeapons instanceof Healer){
                         ((Healer)cibleWeapons).currentWeaponList.remove(0);
@@ -900,6 +961,7 @@ public class MainController {
                         etat=12;
                         treasureImage.setVisible(false);
                         etatLabel.setText("Continuer");
+                        textField.clear();
                         break;
                     }
                 }else{
@@ -908,6 +970,7 @@ public class MainController {
                     idHero=0;
                     treasureImage.setVisible(false);
                     etatLabel.setText("Continuer");
+                    textField.clear();
                     break;
                 }
 
@@ -920,6 +983,7 @@ public class MainController {
                 3- Amelioration de la defense\s
                 4- Amelioration de l'efficacite des objets""");
                     etat=13;
+                    textField.clear();
                     break;
                 }else if(cibleUpgrade instanceof Mage){
                     System.out.println("""
@@ -929,6 +993,7 @@ public class MainController {
                 4- Amelioration de l'efficacite des objets\s
                 5- Reduction du coup en mana de l'attaque speciale""");
                     etat=13;
+                    textField.clear();
                     break;
                 }else if(cibleUpgrade instanceof Hunter){
                     System.out.println("""
@@ -937,6 +1002,7 @@ public class MainController {
                 3- Amelioration de la defense\s
                 4- Amelioration de l'efficacite des objets""");
                     etat=13;
+                    textField.clear();
                     break;
                 }else if(cibleUpgrade instanceof Healer){
                     System.out.println("""
@@ -946,6 +1012,7 @@ public class MainController {
                 4- Amelioration de l'efficacite des objets\s
                 5- Reduction du coup en mana de la capacite speciale""");
                     etat=13;
+                    textField.clear();
                     break;
                 }
             case 13:
@@ -971,6 +1038,7 @@ public class MainController {
                             idHero++;
                             etat = 12;
                         }
+                        textField.clear();
                         break;
                     case 2:
                         if(cibleUpgrade instanceof Warrior){
@@ -991,6 +1059,7 @@ public class MainController {
                             idHero++;
                             etat = 12;
                         }
+                        textField.clear();
                         break;
                     case 3:
                         cibleUpgrade.addResistance(2);
@@ -1003,6 +1072,7 @@ public class MainController {
                             idHero++;
                             etat = 12;
                         }
+                        textField.clear();
                         break;
                     case 4:
                         if(cibleUpgrade instanceof Warrior){
@@ -1023,6 +1093,7 @@ public class MainController {
                             idHero++;
                             etat = 12;
                         }
+                        textField.clear();
                         break;
                     case 5:
                         if(cibleUpgrade instanceof Mage){
@@ -1039,6 +1110,7 @@ public class MainController {
                             idHero++;
                             etat = 12;
                         }
+                        textField.clear();
                         break;
 
                 }

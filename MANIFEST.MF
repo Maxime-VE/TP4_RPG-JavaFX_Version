@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Main-Class: com.example.tp4_rpg_javafx_version.HelloApplication
